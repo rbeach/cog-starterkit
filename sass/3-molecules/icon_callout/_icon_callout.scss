@@ -1,0 +1,218 @@
+// Icon Callouts
+//
+// Style guide: molecule.icon_callout
+
+// Icon Callout (No Link)
+//
+// An icon with text
+//
+// Markup: icon_callout.twig
+//
+// Weight: 0
+//
+// Style guide: molecule.icon_callout.nolink
+.icon-callout {
+  text-align: center;
+  width: 30%;
+
+  &._3 {
+    width: span(3);
+  }
+
+  img {
+    display: block;
+    margin: 0 auto 20px;
+    max-height: 75px;
+    width: auto;
+  }
+
+  ul li {
+    list-style-position: inside;
+  }
+}
+
+.group-4 .icon-callout {
+  width: span(3);
+}
+
+// Icon Callout - Link
+//
+// A clickable icon with text
+//
+// Markup: icon_callout__link.twig
+//
+// Weight: 1
+//
+// Style guide: molecule.icon_callout.link
+
+//Icon Bar
+.icon-bar {
+  @extend .flex-container;
+
+  font-size: 16px;
+  width: 100%;
+
+  section {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .icon-callout {
+    .icon-callout__text {
+      font-size: 16px;
+      font-size: rem-calc(16px);
+
+      h2 {
+        margin-bottom: 25px;
+      }
+
+      h6 {
+        font-family: $muli;
+        font-size: 16px;
+        font-size: rem-calc(16px);
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+.icon-bar.paragraph--view-mode--no-graphic {
+  font-size: 14px;
+  font-size: rem-calc(14px);
+  line-height: 1.5;
+
+  h3 {
+    margin-bottom: 50px;
+  }
+
+  h6 {
+    font-family: $muli;
+    font-size: 18px;
+    font-size: rem-calc(18px);
+    margin: 0 auto 15px;
+    max-width: 260px;
+  }
+
+  p {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+}
+
+.icon-bar--links {
+  @extend .icon-bar;
+
+  font-size: 14px;
+
+  h2 {
+    &.small {
+      font-size: 20px;
+      font-size: rem-calc(20px);
+    }
+  }
+
+  &--pad {
+    h2 {
+      margin-bottom: 70px;
+    }
+  }
+
+  .icon-callout {
+    max-width: none;
+  }
+}
+
+.employer-landing--text-only-bar {
+  h2.small {
+    font-size: 18px;
+    font-size: rem-calc(18px);
+  }
+}
+
+//Responsive Icon Bar
+@media all and (max-width: 768px) {
+  .icon-bar {
+    display: block;
+
+    section {
+      margin: 0 auto;
+      max-width: 560px;
+    }
+
+    .icon-callout {
+      max-width: none;
+      text-align: left;
+      width: 100%;
+      margin-top: 30px;
+
+      .icon-callout__text {
+        margin-left: 100px;
+
+        h2 {
+          margin: 0 auto;
+        }
+      }
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &::after {
+        content: ' ';
+        clear: both;
+        display: table;
+      }
+
+      img {
+        float: left;
+        height: auto;
+        margin-right: 25px;
+        max-height: none;
+        max-width: 75px;
+      }
+    }
+  }
+
+  .icon-bar--links {
+    .icon-callout {
+      text-align: center;
+
+      .icon-callout__text {
+        margin: 0;
+
+        h2 {
+          max-width: 70%;
+          margin: 0 auto 10px;
+        }
+
+        .underline-link {
+          margin-top: 20px;
+        }
+      }
+
+      .image-set + .icon-callout__text h2 {
+        margin-top: 40px;
+      }
+
+      img {
+        float: none;
+        margin: 0 auto;
+        top: -20px;
+        position: relative;
+      }
+    }
+  }
+}
+
+@media all and (min-width: 768px + 1px) {
+  .icon-bar:not(.group-4) {
+    .icon-callout {
+      &:nth-child(4),
+      &:nth-child(5),
+      &:nth-child(6) {
+        margin-top: 60px;
+      }
+    }
+  }
+}

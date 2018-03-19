@@ -1,0 +1,120 @@
+// Colors
+//
+// This is a primary color palette for the site
+//
+// Weight: 0
+//
+// Markup: color_palette.twig
+//
+// Style guide: brand.colors
+//
+
+//Brand Colors
+$blue: #5182c3; //Primary callout color, UT Southwestern Brand
+$green: #30ad65; //Texas Health Resources Brand
+$light-blue1: #aacff4;
+$light-blue2: #b3c5e5;
+$light-blue3: #d0dadf;
+$light-green: #98c276;
+
+$border-gray: #a4a6a7;
+$border-dark-gray: #242424;
+$med-gray: #ddd;
+$gray: #eee;
+$light-gray: #f3f7f9;
+$dark-gray: #565656;
+$dark-gray-grid: $dark-gray url('../images/grey-grid.png') repeat scroll 0 0;
+
+$footer-background-color: $light-gray;
+
+// Font Families
+//
+// These are the font families used.
+// They are served via Google fonts
+//
+// Weight: 1
+//
+// Markup: fonts.twig
+//
+// Style guide: brand.font-families
+//
+$muli: 'Muli', sans-serif;
+$adamina: 'Adamina', serif;
+$heading_font: $adamina;
+$body_font: $muli;
+
+.muli {
+  font-family: $muli;
+}
+
+.adamina {
+  font-family: $adamina;
+}
+
+//Text Colors
+$black: #000;
+$white: #fff;
+$greyed-out: #a3a3a3;
+$link-blue: #5280c3;
+$error-red: #de2c3d;
+
+//Button Colors
+$button-primary-bkgrnd: $blue;
+$button-primary-color: $white;
+$button-secondary-bkgrnd: transparent;
+
+// Font Sizes
+$header1: 60px;
+$header1-small: 48px;
+
+$header2: 28px;
+$header2-small: 21px;
+
+$header3: 24px;
+$header3-small: 18px;
+
+$header4: 21px;
+$header4-small: 16px;
+$header4-xsmall: 14px;
+
+$header5: 48px;
+$header5-small: 32px;
+
+$header6: 32px;
+$header6-small: 21px;
+
+$stat-large: 90px;
+$stat-medium: 60px;
+
+@mixin dark() {
+  @include font-aliasing();
+
+  background: $dark-gray-grid;
+  color: $white;
+  max-width: none;
+  padding: 0;
+
+  a {
+    color: $white;
+
+    &::before {
+      background: $white;
+    }
+  }
+}
+
+@mixin lightblue() {
+  background-color: $light-gray;
+}
+
+.dark {
+  @include dark();
+}
+
+.bg-lightblue {
+  @include lightblue();
+}
+
+.bg-gray {
+  background-color: $gray;
+}

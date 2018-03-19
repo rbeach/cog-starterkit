@@ -1,0 +1,52 @@
+fonts:
+  version: VERSION
+  css:
+    theme:
+      '//fonts.googleapis.com/css?family=Open+Sans:400,700,300': {type: external} # external font
+      fonts/poppins.css: {} # local font
+fontawesome:
+  version: 4.7.0
+  css:
+    component:
+      '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css': {type: external}
+      libraries/slick/slick.css: {}
+#      '//cdn.jsdelivr.net/jquery.slick/1.8.0/slick.css': {type: external}
+javascript:
+  version: VERSION
+  js:
+    '//unpkg.com/scrollreveal/dist/scrollreveal.min.js': {type: external}
+    '//cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js': {type: external}
+#    '//cdn.jsdelivr.net/jquery.slick/1.8.0/slick.min.js': {type: external}
+    libraries/jquery-background-video/jquery.background-video.js: {}
+    libraries/slick/slick.min.js: {}
+    js/dist/3-molecules/icon-callout.js: {}
+    js/dist/3-molecules/fact-box.js: {}
+    js/dist/3-molecules/fact-accordion.js: {}
+    js/dist/3-molecules/faq-item.js: {}
+#    js/dist/3-molecules/form-validation.js: {}
+    js/dist/3-molecules/success-timeline.js: {}
+    js/dist/4-organisms/top-bar.js: {}
+    js/dist/4-organisms/home-nav-fade.js: {}
+    js/dist/4-organisms/home-nav.js: {preprocess: false}
+    js/dist/4-organisms/talk-to-us.js: {}
+    js/dist/4-organisms/doc-finder.js: {}
+    js/dist/5-containers/overlay.js: {}
+    js/dist/6-pages/mapOnLoad.js: {}
+    js/dist/6-pages/backToSearchLink.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
+    - core/jquery.cookie
+spiderify:
+  version: 1.x
+  js:
+    '//cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js': {type: external}
+global_styles:
+  version: VERSION
+  css:
+    theme:
+      libraries/jquery-background-video/jquery.background-video.css: {}
+      css/styles.css: {}

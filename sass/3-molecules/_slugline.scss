@@ -1,0 +1,11 @@
+
+
+.slugline {
+  font-size: 12px;
+  font-size: rem-calc(12px);
+  line-height: 1;
+
+  span.underline-link::before {
+    bottom: -4px;
+  }
+}

@@ -1,0 +1,86 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?vigayv');
+  src:  url('fonts/icomoon.eot?vigayv#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?vigayv') format('truetype'),
+    url('fonts/icomoon.woff?vigayv') format('woff'),
+    url('fonts/icomoon.svg?vigayv#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-Associations_32x32:before {
+  content: "\e900";
+}
+.icon-Awards_32x32:before {
+  content: "\e901";
+}
+.icon-Chat_32x32:before {
+  content: "\e902";
+}
+.icon-Checkmark_32x32:before {
+  content: "\e903";
+}
+.icon-Close_32x32:before {
+  content: "\e904";
+}
+.icon-Collapse_32x32:before {
+  content: "\e905";
+}
+.icon-Doctor_32x32:before {
+  content: "\e906";
+}
+.icon-Dropdown_2_32x32:before {
+  content: "\e907";
+}
+.icon-Dropdown_32x32:before {
+  content: "\e908";
+}
+.icon-Expand_32x32:before {
+  content: "\e909";
+}
+.icon-Filter_32x32:before {
+  content: "\e90a";
+}
+.icon-Hamburger_Menu_32x32:before {
+  content: "\e90b";
+}
+.icon-Left_Arrow_Small_32x32:before {
+  content: "\e90c";
+}
+.icon-Map_Pin_2_32x32:before {
+  content: "\e90d";
+}
+.icon-Map_Pin_32x32:before {
+  content: "\e90e";
+}
+.icon-Provider_32x32:before {
+  content: "\e90f";
+}
+.icon-Read_More_2_32x32:before {
+  content: "\e910";
+}
+.icon-Read_More_32x32:before {
+  content: "\e911";
+}
+.icon-Right_Arrow_Small_32x32:before {
+  content: "\e912";
+}
+.icon-Search_32x32:before {
+  content: "\e913";
+}

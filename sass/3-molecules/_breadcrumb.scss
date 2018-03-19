@@ -1,0 +1,32 @@
+.breadcrumb {
+  //@extend .blocked-style;
+
+  font-size: 12px;
+  font-size: rem-calc(12px);
+  margin-bottom: 5px;
+  color: $black;
+  font-weight: 600;
+
+  a {
+    color: $black;
+    font-weight: 600;
+  }
+
+  span.separator {
+    margin: 0 6px;
+  }
+
+  //ol {
+  //  @extend .no-ul-list;
+  //
+  //  li::before {
+  //    content: '/';
+  //    padding: 0 3px 0 0.5px;
+  //    color: $dark-gray;
+  //  }
+  //
+  //  li:first-child::before {
+  //    content: normal;
+  //  }
+  //}
+}

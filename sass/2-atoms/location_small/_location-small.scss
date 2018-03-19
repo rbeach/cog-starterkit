@@ -1,0 +1,16 @@
+
+
+.location {
+  label {
+    color: $black;
+    font-weight: 600;
+
+    &:hover {
+      cursor: default;
+    }
+  }
+}
+
+.location--small {
+  @extend .location;
+}

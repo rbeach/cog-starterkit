@@ -1,0 +1,171 @@
+@import '../node_modules/susy/sass/susy';
+@import '../node_modules/breakpoint-sass/stylesheets/breakpoint';
+
+/**
+  Normal reset
+*/
+@import "reset";
+
+/**
+  Config folder contains centralized variables
+  config-base contains the original cog variable settings
+*/
+@import "0-utility/**/*";
+
+// Brand
+//
+// These are brand guidelines. They are not tied to specific HTML elements
+// but give a sense of the site's brand identity
+//
+// Weight: 0
+//
+// Style guide: brand
+@import "1-brand/**/*";
+
+// Atoms
+//
+// These are the default base styles applied to HTML elements.
+// Atoms are the single UI elements, such as headings and buttons
+//
+// Weight: 1
+//
+// Style guide: atom
+@import "2-atoms/**/*";
+
+// Molecules
+//
+// Molecules are simple groups of UI elements that function together as a unit
+// Examples include a search form
+//
+// Weight: 2
+//
+// Style guide: molecule
+@import "3-molecules/**/*";
+
+// Organisms
+//
+// Organisms are complex UI components that form
+// distinct sections of an interface
+//
+// Weight: 3
+//
+// Style guide: organisms
+@import "4-organisms/**/*";
+
+// Templates
+//
+// Templates are level objects that place components into a layout and
+// articulate the design's underlying content structure
+//
+// Weight: 4
+//
+// Style guide: templates
+@import "5-templates/**/*";
+
+// Pages
+//
+// Pages are full representations of content on a page
+//
+// Weight: 5
+//
+// Markup: pages.twig
+//
+// Style guide: page
+@import "6-pages/**/*";
+
+// Home Page
+//
+// Home Section Landing
+//
+// Weight: 6
+//
+// Style guide: page_home
+
+// Consumer Landing
+//
+// Consumer Section Landing
+//
+// Weight: 7
+//
+// Style guide: page_consumer_landing
+
+// Doctor Landing
+//
+// Doctor Section Landing
+//
+// Weight: 8
+//
+// Style guide: page_doctor_landing
+
+// Employer Landing
+//
+// Employer Landing
+//
+// Weight: 9
+//
+// Style guide: page_employer_landing
+
+// Doctor Profile
+//
+// Example Doctor Profile Page
+//
+// Weight: 10
+//
+// Style guide: page_doc_profile
+
+// Location
+//
+// Example Location Page
+//
+// Weight: 11
+//
+// Style guide: page_location
+
+// About Us Page
+//
+// About us Sub Page
+//
+// Weight: 12
+//
+// Style guide: page_about_us
+
+// ACO Performance
+//
+// ACO Performance
+//
+// Weight: 13
+//
+// Style guide: page_aco_performance
+
+// ACO Network
+//
+// ACO Network
+//
+// Weight: 14
+//
+// Style guide: page_aco_network
+
+// Population Health Services
+//
+// Population Health Services
+//
+// Weight: 15
+//
+// Style guide: page_population_health_services
+
+// Leading Edge Care
+//
+// Leading Edge Care
+//
+// Weight: 15
+//
+// Style guide: page_leading_edge_care
+
+// Spotlight Article
+//
+// Spotlight Article
+//
+// Weight: 15
+//
+// Style guide: page_spotlight_article
+

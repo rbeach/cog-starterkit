@@ -1,0 +1,29 @@
+name: Cog swhr
+type: theme
+description: 'Acquia D8 starter theme'
+core: 8.x
+base theme: cog
+libraries:
+  - swhr/fonts
+  - swhr/fontawesome
+  - swhr/global_styles
+  - swhr/javascript
+libraries-extend:
+  core/drupalSettings:
+    - swhr/spiderify
+libraries-override:
+  geolocation/geolocation.googlemapsapi:
+    js:
+      js/geolocation-google-maps-api.js: js/dist/4-organisms/geolocation-google-maps-api-override.js
+  geolocation/geolocation.commonmap:
+    js:
+      js/geolocation-common-map.js: js/dist/4-organisms/geolocation-common-map-override.js
+regions:
+  top_bar: Top Bar
+  header: Header
+  pre_content: 'Pre content'
+  content: Content
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  post_content: 'Post content'
+  footer: Footer

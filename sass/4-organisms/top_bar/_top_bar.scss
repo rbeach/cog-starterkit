@@ -1,0 +1,167 @@
+#top-bar {
+  @include container();
+
+  position: relative;
+  z-index: 300;
+}
+
+.top-bar {
+  box-sizing: border-box;
+  position: absolute;
+  top: 31px;
+  width: 100%;
+
+  .logo {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    margin-right: 15px;
+    max-width: 378px;
+    width: span(9);
+
+    a {
+      display: block;
+
+      &::before {
+        content: normal;
+        display: none;
+        height: 0;
+      }
+    }
+  }
+
+  &.fixed-bar {
+    position: fixed;
+    top: 0;
+  }
+}
+
+.top-bar__wrapper {
+  background: $white;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  line-height: 1;
+  padding: 19px 30px;
+  padding: rem-calc(19px) rem-calc(30px);
+  position: relative;
+}
+
+.style-guide-head {
+  align-self: center;
+  font-size: 14px;
+  font-size: rem-calc(14px);
+  font-weight: bold;
+  line-height: 1;
+  text-align: right;
+  text-transform: uppercase;
+  width: span(3);
+}
+
+.top-bar--links {
+  align-self: center;
+  font-size: 14px;
+  font-size: rem-calc(14px);
+  font-weight: bold;
+  line-height: 1;
+  max-width: 356px;
+  text-align: right;
+  text-transform: uppercase;
+  width: span(5);
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin: 0;
+
+      a {
+        color: $black;
+        font-weight: 600;
+        padding-left: 50px;
+        position: relative;
+        line-height: 1.7em;
+
+        &::before {
+          height: 0;
+        }
+
+        &:hover::before {
+          height: 1px;
+        }
+
+        i {
+          left: 0;
+          position: absolute;
+          font-size: 28px;
+          top: -3px;
+        }
+      }
+    }
+  }
+}
+
+//Top Bar Responsive
+@media all and (max-width: $content-width + (2 * 20)) {
+  .top-bar {
+    padding: 0 20px;
+  }
+
+  .top-bar__wrapper {
+    min-height: 82px;
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 908px) {
+  .top-bar__wrapper {
+    padding: 12px 15px;
+    padding: rem-calc(12px) rem-calc(15px);
+  }
+
+  .top-bar--links ul li a {
+    padding-left: 35px;
+  }
+}
+
+@media all and (max-width: 760px) {
+  .top-bar--links {
+    background: $white;
+    box-sizing: border-box;
+    display: none;
+    left: 0;
+    position: absolute;
+    max-width: none;
+    padding: 0;
+    top: 82px;
+    width: 100%;
+
+    &.active {
+      display: block;
+    }
+
+    ul {
+      display: block;
+
+      li {
+        border-top: solid 1px $black;
+        padding: 0;
+        text-align: left;
+
+        a {
+          display: block;
+          padding: 25px 0 25px 60px;
+
+          i {
+            left: 18px;
+            top: 18px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+//PLACEHOLDER
+
+#block-swhr-page-title h1 {
+  display: none;
+}
+
+.mq-main {
+  padding-top: 57px;
+}
+
+//Employer Landing Page
+.aco-healthcare-chart__intro {
+  .text-section {
+    padding-bottom: 8px;
+    padding-top: 96px;
+  }
+}
+
+.aco-healthcare-chart {
+  .text-section {
+    padding-bottom: 0;
+  }
+}
+
+.alias--for-employers {
+  .icon-bar > section {
+    padding-top: 20px;
+  }
+}
+
+.cost-difference-chart {
+  padding-top: 63px;
+
+  & > section {
+    padding-bottom: 31px;
+  }
+
+  .field--name-field-image-caption {
+    font-size: 12px;
+    font-size: rem-calc(12px);
+    font-style: normal;
+    line-height: 1.2;
+    margin-left: 8%;
+  }
+}
+
+// Spotlight
+.field--name-field-spotlight-video {
+  margin-top: 53px;
+}
+
+.content-area > section.spotlight__content-top {
+  padding-bottom: 0;
+}

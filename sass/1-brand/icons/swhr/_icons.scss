@@ -1,0 +1,117 @@
+@font-face {
+  font-family: 'swhr-icons';
+  src: url('../fonts/swhr-icons/swhr-icons.eot?70aaz5');
+  src:
+    url('../fonts/swhr-icons/swhr-icons.eot?70aaz5#iefix') format('embedded-opentype'),
+    url('../fonts/swhr-icons/swhr-icons.ttf?70aaz5') format('truetype'),
+    url('../fonts/swhr-icons/swhr-icons.woff?70aaz5') format('woff'),
+    url('../fonts/swhr-icons/swhr-icons.svg?70aaz5#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="swhrcon-"],
+[class*=" swhrcon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'swhr-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-size: 32px;
+  font-size: 2rem;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.swhrcon-associations::before {
+  content: "\e900";
+}
+
+.swhrcon-awards::before {
+  content: "\e901";
+}
+
+.swhrcon-chat::before {
+  content: "\e902";
+}
+
+.swhrcon-checkmark::before {
+  content: "\e903";
+}
+
+.swhrcon-close::before {
+  content: "\e904";
+}
+
+.swhrcon-collapse::before {
+  content: "\e905";
+}
+
+.swhrcon-doctor::before {
+  content: "\e906";
+}
+
+.swhrcon-dropdown2::before {
+  content: "\e907";
+}
+
+.swhrcon-dropdown::before {
+  content: "\e908";
+}
+
+.swhrcon-expand::before {
+  content: "\e909";
+}
+
+.swhrcon-filter::before {
+  content: "\e90a";
+}
+
+.swhrcon-hamburger_Menu::before {
+  content: "\e90b";
+}
+
+.swhrcon-left_Arrow_Small::before {
+  content: "\e90c";
+}
+
+.swhrcon-map_pin_2::before {
+  content: "\e90d";
+}
+
+.swhrcon-map_pin::before {
+  content: "\e90e";
+}
+
+.swhrcon-provider::before {
+  content: "\e90f";
+}
+
+.swhrcon-read_more_2::before {
+  content: "\e910";
+}
+
+.swhrcon-read_more::before {
+  content: "\e911";
+}
+
+.swhrcon-right_arrow_small::before {
+  content: "\e912";
+}
+
+.swhrcon-search::before {
+  content: "\e913";
+}
+
+.read-more {
+  background: url('../sass/1-brand/icons/swhr/read-more.png') no-repeat scroll 0 0;
+  display: inline-block;
+  height: 14px;
+  vertical-align: middle;
+  width: 14px;
+}

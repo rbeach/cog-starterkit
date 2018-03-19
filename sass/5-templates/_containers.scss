@@ -1,0 +1,112 @@
+//////////////////////////////////
+// Primary Container Rules ///////
+//////////////////////////////////
+
+.cog--mq {
+  //max-width: $content-width;
+  //@include container();
+  //margin: 60px auto;
+}
+
+section {
+  margin: 0 auto;
+  max-width: $content-width;
+
+  &.full-width {
+    max-width: 100%;
+  }
+}
+
+#content {
+  max-width: none;
+}
+
+.dark {
+  @include font-aliasing;
+}
+
+.container {
+  @include container();
+
+  &.sidebar-right::after {
+    display: none;
+  }
+
+  @media all and (max-width: $content-width + (2 * 20px)) {
+    padding: 0 20px;
+  }
+}
+
+.shaded-callout-box {
+  background-color: $light-gray;
+  padding: 40px;
+}
+
+.mq-main {
+  .content-top {
+    padding-top: 15px;
+  }
+
+  .breadcrumb {
+    padding: 0;
+  }
+}
+
+.sidebar-right {
+  @include flex-container();
+
+  padding-bottom: 40px;
+  padding-top: 45px;
+
+  .main {
+    width: span(8);
+
+    @media all and (max-width: 840px) {
+      width: 100%;
+    }
+  }
+
+  .sidebar {
+    width: span(3);
+
+    @media all and (max-width: 840px) {
+      width: 100%;
+    }
+  }
+
+  section {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 1180px) {
+  .mq-main {
+    .breadcrumb {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .field--name-field-tag-image {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+
+  .paragraph--view-mode--big-graphic {
+    .field--name-field-video {
+      margin-left: -20px;
+      margin-right: -20px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px + 1px) {
+  .content-area > section,
+  #content > .field__items > .field__item {
+    &:last-child {
+      padding-bottom: 70px;
+    }
+  }
+}

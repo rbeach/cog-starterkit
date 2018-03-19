@@ -1,0 +1,28 @@
+
+
+//Location Page - specific styles
+.nodetype--location {
+  .main {
+    .location--small {
+      border-bottom: solid 2px $light-blue3;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      max-width: 560px;
+
+      &:last-child {
+        border-bottom: none;
+        margin: 0;
+      }
+    }
+  }
+}
+
+//Location Section
+#location-map {
+  height: 100%;
+}
+
+.nodetype--location section.location--section {
+  padding: 0;
+  margin-bottom: 0;
+}

@@ -1,0 +1,261 @@
+/*
+ //Header Main Menu
+ //
+ //Header menus styling for main nav
+ //
+ //Markup: header.twig
+ //
+ //Style guide: components.header
+ */
+$header-nav-height: 608px;
+$mobile-header-nav-height: 570px;
+$header-internal-height: 591px;
+
+#header {
+  @include font-aliasing();
+
+  background: $light-gray;
+  height: $header-nav-height;
+  margin-bottom: 20px;
+  overflow-y: hidden;
+
+  @media all and (max-width: 678px) {
+    height: $mobile-header-nav-height;
+  }
+}
+
+//Nav Override
+.node--type-section-landing #header {
+  @media all and (max-width: 678px) {
+    height: $header-nav-height;
+  }
+}
+
+//Interior pages have a slightly shorter header
+.interior-page {
+  #header,
+  .header--bkgrnd {
+    height: $header-internal-height;
+  }
+}
+
+.region-header {
+  @include region-spacer($light-gray);
+}
+
+.header--bkgrnd {
+  background-size: cover;
+  background-position: 50% 50%;
+  height: $header-nav-height;
+  overflow: hidden;
+  position: relative;
+
+  @media all and (max-width: 678px) {
+    height: $mobile-header-nav-height;
+  }
+
+  .bkgrnd__image,
+  .bkgrnd__image--768,
+  .bkgrnd__image--320 {
+    background-position: 50% 50%;
+  }
+
+  //Desktop stock image background
+  @media all and (min-width: 769px) {
+    .bkgrnd__image--768,
+    .bkgrnd__image--320 {
+      display: none;
+    }
+
+    .bkgrnd__image {
+      display: block;
+      background-size: cover;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+    }
+  }
+
+  //Medium stock image background
+  @media all and (max-width: 768px) and (min-width: 321px) {
+    .bkgrnd__image,
+    .bkgrnd__image--320 {
+      display: none;
+    }
+
+    .bkgrnd__image--768 {
+      display: block;
+      background-size: cover;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+    }
+  }
+
+  //Small Screen stock image background
+  @media all and (max-width: 320px) {
+    .bkgrnd__image,
+    .bkgrnd__image--768 {
+      display: none;
+    }
+
+    .bkgrnd__image--320 {
+      display: block;
+      background-size: cover;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+    }
+  }
+}
+
+//Nav Override
+.node--type-section-landing .header--bkgrnd {
+  @media all and (max-width: 678px) {
+    height: $header-nav-height;
+  }
+}
+
+.header__container {
+  @include container();
+
+  align-items: center;
+  box-sizing: border-box;
+  color: $white;
+  display: flex;
+  height: 100%;
+  padding: 150px 20px 82px;
+  position: relative;
+  width: 100%;
+
+  @media all and (max-width: 678px) {
+    padding-top: 0;
+    padding-bottom: 14px;
+  }
+
+  @media all and (max-width: 767px) {
+    flex-wrap: wrap;
+    padding-top: 120px;
+  }
+
+  &.center-vertically {
+    align-items: center;
+  }
+
+  .content {
+    @media all and (min-width: 768px) {
+      max-width: 550px;
+
+      h1 {
+        font-size: 55px;
+        font-size: rem-calc(55px);
+      }
+    }
+  }
+
+  .button-group {
+    justify-content: flex-start;
+    margin-top: 38px;
+
+    .button {
+      @media all and (min-width: 768px) {
+        max-width: 194px;
+      }
+    }
+  }
+
+  .link-group {
+    margin-top: 23px;
+
+    a {
+      font-weight: 900;
+
+      &::after {
+        height: 0;
+      }
+
+      &:hover::after {
+        height: 1px;
+      }
+    }
+  }
+}
+
+#header h1 {
+  .smalltext {
+    display: block;
+    font-family: $adamina;
+    font-size: 20px;
+    font-size: rem-calc(20px);
+  }
+}
+
+.header__container--darktext {
+  color: $black;
+
+  @extend .header__container;
+}
+
+.overlay--image {
+  background: url('../images/header-shadow.png') no-repeat scroll 0 0;
+
+  @extend .overlay;
+}
+
+//Header thumbnails
+.header__thumbnail {
+  flex-grow: 1;
+  text-align: right;
+}
+
+@media all and (max-width: 767px) {
+  .header__thumbnail {
+    margin-bottom: 30px;
+    order: -1;
+    width: 100%;
+
+    img {
+      display: block;
+    }
+  }
+}
+
+//Doctor Header Specific Styles
+.doctor-header__title {
+  font-size: 21px;
+  font-size: rem-calc(21px);
+  line-height: 1.4;
+}
+
+.doctor-header {
+  .button-group {
+    max-width: 270px;
+
+    .button--secondary {
+      max-width: none;
+      width: 100%;
+    }
+  }
+
+  .link-group {
+    display: flex;
+    justify-content: space-between;
+    max-width: 270px;
+  }
+}
+
+@media screen and (max-width: 1180px) and (min-width: 768px) {
+  .header__container {
+    .content {
+      padding: 0 20px;
+    }
+  }
+}
+
+@media all and (max-width: 678px) {
+  .header__container {
+    .content {
+      width: 100%;
+    }
+  }
+}

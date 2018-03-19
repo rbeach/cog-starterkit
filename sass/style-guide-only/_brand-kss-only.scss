@@ -1,0 +1,32 @@
+
+//Color cards
+.color-palette {
+  display: flex;
+
+  .color {
+    background: red;
+    height: 100px;
+    width: span(3);
+
+    &.blue {
+      background: $blue;
+    }
+
+    &.green {
+      background: $green;
+    }
+
+    &.light-blue {
+      background: $light-blue1;
+    }
+
+    &.dark-gray {
+      background: $dark-gray;
+    }
+  }
+}
+
+//Icons
+.styleguide-icons .flex-container {
+  text-align: center;
+}

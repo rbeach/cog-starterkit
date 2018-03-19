@@ -1,0 +1,32 @@
+.webform-submission-contact-form {
+  .confirmation-wrapper {
+    @include dark();
+
+    height: 350px;
+
+    .image {
+      background-size: cover;
+      height: 100%;
+      width: 50%;
+    }
+  }
+
+  .webform-confirmation__message {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 20px 50px;
+    width: 50%;
+
+    h5 {
+      font-family: $muli;
+      font-size: 32px;
+      font-size: rem-calc(32px);
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 55px;
+    }
+  }
+}

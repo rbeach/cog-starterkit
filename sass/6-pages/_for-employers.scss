@@ -1,0 +1,17 @@
+//Text bar overrides.
+
+.icon-bar.employer-landing--text-only-bar {
+  .icon-callout .icon-callout__text {
+    font-size: 16px;
+    font-size: rem-calc(16px);
+  }
+}
+
+@media all and(max-width: 767px) {
+  .icon-bar.employer-landing--text-only-bar {
+    .icon-callout .icon-callout__text {
+      margin-left: 0;
+      text-align: center;
+    }
+  }
+}

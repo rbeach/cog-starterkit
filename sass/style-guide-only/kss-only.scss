@@ -1,0 +1,89 @@
+// This file is used to add styles to the style guide and is not included in
+// the Drupal site. It gets included by the style guide by adding it to the
+// options.styleGuide.css object in gulpfile.js.
+
+// Add an outline to every grid item in the style guide.
+// [id^="kssref-layouts-"] [class^="layout-"][class*="__"] {
+//   outline: 1px dotted color('grey');
+// }
+@import '../../node_modules/susy/sass/susy';
+@import '../../node_modules/breakpoint-sass/stylesheets/breakpoint';
+@import "../0-utility/**/*";
+@import "../1-brand/brand";
+@import "brand-kss-only";
+
+div.kss-modifier__wrapper {
+  > * {
+    // float: left;
+    width: 100%;
+    position: relative;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  #kss-node .kss-sidebar {
+    background: $light-blue1;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+}
+
+.styleguide-sections {
+  margin: 0 auto;
+  max-width: $content-width;
+}
+
+#kss-node {
+  background: $light-blue1;
+
+  #main {
+    background: $white;
+    overflow: hidden;
+  }
+}
+
+#kss-node .kss-section {
+  margin: 40px auto;
+  max-width: $content-width;
+}
+
+#kss-node .kss-modifier__name {
+  float: none;
+}
+
+.kss-modifier {
+  margin-bottom: 23px;
+}
+
+.styleguide-nav {
+  padding: 40px 0;
+}
+
+#content-area .styleguide-nav {
+  padding-top: 0;
+}
+
+//Buttons Section
+#kssref-atom-button {
+  .kss-modifier__content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .kss-modifier {
+    width: span(6);
+  }
+}
+
+#kss-node .kss-modifier__heading {
+  background: $light-blue1;
+}
+
+.kss-landing {
+  li a {
+    &::before {
+      height: 0;
+    }
+  }
+}

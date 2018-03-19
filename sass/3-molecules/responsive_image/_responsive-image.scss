@@ -1,0 +1,40 @@
+
+
+.image-set {
+  img {
+    display: none;
+  }
+
+  img:first-child {
+    display: block;
+    image-rendering: optimizequality;
+  }
+
+  &.mobile-image-768 {
+    @media all and (max-width: 768px) {
+      img:first-child {
+        display: none;
+      }
+
+      img:nth-child(2) {
+        display: block;
+      }
+    }
+  }
+
+  &.mobile-image-320 {
+    @media all and (max-width: 320px) {
+      img:first-child {
+        display: none;
+      }
+
+      img:nth-child(2) {
+        display: none;
+      }
+
+      img:nth-child(3) {
+        display: block;
+      }
+    }
+  }
+}

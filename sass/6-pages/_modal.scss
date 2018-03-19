@@ -1,0 +1,146 @@
+//// Modal Page Styles
+.modal-container {
+  padding-top: 30px;
+}
+
+.ui-dialog {
+  background: $light-gray;
+  box-sizing: border-box;
+  height: 100% !important;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  padding: 63px 20px 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
+
+  .ui-dialog-content {
+    padding: 0;
+  }
+}
+//Title Bar
+.ui-widget-header {
+  background: none !important;
+  border: none !important;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+  height: 32px;
+  max-width: $content-width;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+}
+
+.ui-dialog-title {
+  display: none;
+}
+
+//Close Button
+.ui-widget .ui-dialog-titlebar-close {
+  font-size: 0;
+  height: 22px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 22px;
+
+  &:hover {
+    border: none;
+  }
+
+  .ui-icon-closethick {
+    background-image: url('/themes/custom/swhr/images/modal-close.png') !important;
+    background-position: 0 0;
+    height: 22px;
+    width: 22px;
+  }
+}
+
+////Scrollable Overlays - Overrides
+html.no-scroll {
+  height: 100%;
+  overflow: hidden;
+  user-select: none;
+}
+
+body.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  //height: 100%;
+  width: 100%;
+  user-select: none;
+
+  .page-standard {
+    overflow: hidden;
+    height: 100%;
+  }
+}
+//
+div#drupal-modal {
+  height: 100% !important;
+  max-height: none !important;
+  overflow: visible;
+
+  & > div {
+    margin: 0 auto;
+    max-width: $content-width;
+  }
+}
+
+.modal-logo {
+  max-width: 369px;
+  position: relative;
+  top: -63px;
+  padding-right: 20px;
+
+  a:focus {
+    outline: none;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.modal-title {
+  padding-bottom: 20px;
+
+  i {
+    margin-right: 18px;
+    position: relative;
+    top: 2px;
+  }
+}
+
+//Hide Throbber
+.ajax-progress-throbber {
+  display: none;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+  background: none;
+  border: none;
+  color: $black;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus,
+.ui-button:hover,
+.ui-button:focus {
+  background: none;
+  border: none;
+  color: $black;
+}

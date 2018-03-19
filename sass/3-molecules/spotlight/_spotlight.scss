@@ -1,0 +1,59 @@
+
+
+//Spotlight Teaser
+.spotlight--teaser {
+  .headline {
+    font-family: $muli;
+    font-size: 21px;
+    font-size: rem-calc(21px);
+    font-weight: 600;
+  }
+
+  .slugline {
+    font-size: 12px;
+    font-size: rem-calc(12px);
+    font-weight: normal;
+    line-height: 1;
+    margin: 11px 0 29px;
+    color: $dark-gray;
+  }
+
+  .field--name-field-teaser {
+    font-size: 14px;
+    font-size: rem-calc(14px);
+    line-height: 1.7;
+  }
+
+  .underline-link {
+    line-height: 1;
+
+    a {
+      font-size: 12px;
+      font-size: rem-calc(12px);
+    }
+
+    &::before {
+      bottom: -3px;
+    }
+  }
+}
+
+.view-display-id-spotlight_block {
+  cursor: pointer;
+
+  a > span {
+    display: block;
+  }
+
+  span {
+    color: $black;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .spotlight--teaser {
+    .headline {
+      margin-top: 10px;
+    }
+  }
+}

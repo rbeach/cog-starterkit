@@ -1,0 +1,428 @@
+// Fact Accordion
+//
+// An expandable box accordion with 3 sections
+//
+// Markup: fact_accordion.twig
+//
+// Weight: 3
+//
+// Style guide: molecule.fact_accordion
+
+$image-height-768: 1037px;
+
+.paragraph--type--multibox {
+  h3 {
+    padding: 40px 0 60px;
+  }
+}
+
+.fact-accordion {
+  @include font-aliasing();
+
+  background-color: $white;
+  background-position: 50% 50%;
+  background-size: cover;
+  color: $white;
+  min-height: 337px;
+  overflow: hidden;
+  position: relative;
+
+  .overlay {
+    @extend .flex-container;
+  }
+
+  .fact {
+    box-sizing: border-box;
+    display: flex;
+    float: none;
+    overflow: hidden;
+    position: relative;
+    transition-timing-function: ease-in;
+    transition-property: all;
+    transition-duration: 0.2s;
+    width: span(4 inside no-gutters);
+
+    .title__wrapper {
+      align-items: center;
+      bottom: 0;
+      box-sizing: border-box;
+      display: flex;
+      padding: 30px;
+      vertical-align: bottom;
+      max-width: 355px;
+
+      .title {
+        height: 99px;
+        display: flex;
+        align-items: flex-end;
+      }
+
+      h2 {
+        padding: 0;
+        transform: translateY(90px);
+        transition-timing-function: ease-in;
+        transition-property: all;
+        transition-duration: 0.3s;
+      }
+    }
+
+    .content {
+      display: none;
+      opacity: 0;
+      align-items: center;
+      max-width: 500px;
+      padding: 0 30px 0 0;
+      transition-timing-function: ease-in;
+      transition-property: all;
+      transition-duration: 0.3s;
+    }
+
+    &:hover,
+    &.expanded {
+      cursor: pointer;
+
+      .title__wrapper h2 {
+        align-self: center;
+        transform: translateY(0);
+        transition-timing-function: ease-out;
+      }
+    }
+
+    &:nth-child(2) {
+      border-left: solid 1px $white;
+      border-right: solid 1px $white;
+    }
+  }
+}
+
+//Backgrounds
+.fact-accordion__background {
+  left: 0;
+  position: absolute;
+  height: auto;
+  margin-left: 50%;
+  max-width: none;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+
+  @media all and (max-width: 1050px) {
+    height: 100%;
+    width: auto;
+  }
+}
+
+.fact-accordion__background--768 {
+  left: 0;
+  height: $image-height-768; //1037 - doctor landing image. 1372 - population health services image.
+  margin-left: 50%;
+  max-width: none;
+  position: absolute;
+  top: -150.5px; // ($image-height-768 - 736) / 2
+  transform: translate(-50%, 0);
+  width: auto;
+
+  @media all and (min-width: 769px) {
+    display: none;
+  }
+}
+
+.fact-accordion__background--320 {
+  height: auto;
+  left: 0;
+  margin-left: 50%;
+  max-width: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+
+  @media all and (min-width: 321px) {
+    display: none;
+  }
+}
+
+//Expanded States
+.fact-accordion.expanded {
+  .fact {
+    width: 20%;
+
+    &.expanded {
+      width: 60%;
+
+      .title__wrapper {
+        max-width: 250px;
+
+        h2 {
+          transform: translateY(0);
+          transition-timing-function: ease-out;
+        }
+      }
+
+      .content {
+        display: flex !important;
+      }
+    }
+  }
+}
+
+// # of item Variants
+// 4 items
+.fact-accordion.children-4 {
+  .fact {
+    width: 25%;
+
+    &:nth-child(3) {
+      border-right: solid 1px $white;
+    }
+
+    .title__wrapper {
+      padding: 20px;
+
+      h2 {
+        font-size: 18px;
+      }
+    }
+
+    .content {
+      padding: 0 65px 0 0;
+    }
+  }
+
+  &.expanded {
+    .fact {
+      width: 13%;
+
+      &.expanded {
+        width: 61%;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 640px) {
+  .fact-accordion.children-4 .fact .content {
+    padding: 0 20px;
+  }
+}
+
+// 2 items
+.fact-accordion.children-2 {
+  .fact {
+    width: 50%;
+
+    &:nth-child(2) {
+      border-right: none;
+    }
+  }
+
+  &.expanded {
+    .fact {
+      width: 30%;
+
+      &.expanded {
+        width: 70%;
+      }
+    }
+  }
+}
+
+//Fact Accordion - Mobile
+@media all and (max-width: 1050px) {
+  .fact-accordion {
+    height: 432px;
+    max-width: 653px;
+    margin: 0 auto;
+
+    .overlay {
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .fact {
+      height: span(4 inside no-gutters);
+      width: 100%;
+
+      &:nth-child(2) {
+        border-bottom: solid 1px $white;
+        border-left: none;
+        border-right: none;
+        border-top: solid 1px $white;
+      }
+
+      .title__wrapper {
+        .title {
+          align-items: center;
+        }
+
+        h2 {
+          font-size: 21px;
+          font-size: rem-calc(21px);
+          transform: none;
+        }
+      }
+    }
+
+    &.children-2 {
+      &.expanded {
+        .fact {
+          height: 30%;
+          width: 100%;
+        }
+
+        .fact.expanded {
+          height: 70%;
+          width: 100%;
+        }
+      }
+
+      .fact {
+        height: 50%;
+        width: 100%;
+
+        &:nth-child(2) {
+          border-bottom: none;
+        }
+      }
+    }
+
+    &.children-4 {
+      height: 650px;
+
+      &.expanded {
+        .fact {
+          height: 10%;
+          width: 100%;
+        }
+
+        .fact.expanded {
+          height: 70%;
+          width: 100%;
+        }
+      }
+
+      .fact {
+        height: 25%;
+        width: 100%;
+
+        &:nth-child(3) {
+          border-bottom: solid 1px $white;
+        }
+      }
+    }
+
+    &.expanded {
+      .fact {
+        height: 20%;
+        width: 100%;
+      }
+
+      .fact.expanded {
+        height: 60%;
+        width: 100%;
+      }
+    }
+  }
+
+  .fact-accordion.children-2 {
+    .overlay {
+      justify-content: flex-start;
+    }
+
+    .fact {
+      height: 50%;
+      justify-content: flex-start;
+
+      &:nth-child(2) {
+        border-bottom: none;
+      }
+    }
+
+    &.expanded {
+      .fact {
+        height: 20%;
+        width: 100%;
+      }
+
+      .fact.expanded {
+        height: 70%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 640px) {
+  .fact-accordion {
+    height: auto !important;
+    min-height: 0;
+
+    .overlay {
+      position: static;
+    }
+
+    .fact {
+      flex-direction: column;
+      height: 142px;
+
+      .title__wrapper {
+        padding: 20px 60px 20px 20px;
+        height: 142px;
+        max-width: none !important;
+      }
+
+      .content {
+        padding: 0 20px;
+      }
+    }
+
+    //Background image heights calculated by height when an option is opened.
+    img {
+      height: 934px; // (142 * 2) + 650
+      //top: 213px;
+    }
+
+    &.children-2 {
+      img {
+        height: 792px; // 142 + 650
+        top: 142px;
+      }
+    }
+
+    &.children-4 {
+      img {
+        height: 1076px // (142 * 3) + 650
+      }
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+  .paragraph--type--multibox {
+    h3 {
+      padding-top: 0;
+      padding-bottom: 20px;
+    }
+  }
+
+  .fact-accordion.expanded .fact.expanded .content {
+    margin-bottom: 30px;
+  }
+}
+
+@media all and (min-width: 768px + 1px) {
+  .paragraph--type--multibox {
+    h3 {
+      padding-left: 20%;
+      padding-right: 20%;
+    }
+  }
+
+  .fact-accordion .fact {
+    height: 100% !important;
+  }
+}
+
+.fact-accordion.children-4 .fact-accordion__background--768 {
+  height: auto;
+}

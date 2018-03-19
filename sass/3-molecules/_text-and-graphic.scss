@@ -1,0 +1,47 @@
+
+
+.graphic--full-width {
+  clear: both;
+  text-align: center;
+  width: 100%;
+}
+
+//Specific Instances
+
+//Homepage
+.homepage-intro {
+  @media all and (min-width: 768px) {
+    .span3 {
+      .field__item {
+        max-width: 144px;
+        margin: 0 20px 0 auto;
+      }
+    }
+
+    img {
+      margin-bottom: 20px;
+    }
+  }
+
+  img {
+    margin: 0 auto 20px;
+  }
+
+  .field--name-field-image-caption {
+    font-size: 12px;
+    font-size: rem-calc(12px);
+    line-height: 1.3;
+
+    @media all and (max-width: 767px) {
+      text-align: center;
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+  .homepage-intro {
+    img {
+      margin-top: 20px;
+    }
+  }
+}

@@ -1,0 +1,160 @@
+// Fact Box
+//
+// Four-year timeline with highlight panels
+//
+// Weight: 2
+//
+// Style guide: molecule.success_timeline
+
+.success-timeline {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  .line {
+    display: block;
+    position: absolute;
+    top: 40px;
+    left: 8px;
+    width: calc(100% - 8px);
+    height: 4px;
+    background-color: $blue;
+  }
+
+  .arrow-sm {
+    display: none;
+    transition: all 500ms ease;
+    position: absolute;
+    left: 65px;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid $dark-gray;
+  }
+
+  .timeline-year {
+    width: 24%;
+
+    .year {
+      transition: all 500ms ease;
+      color: $blue;
+      display: inline-block;
+      font-size: 1.5em;
+      height: 40px;
+      cursor: pointer;
+    }
+
+    .dot {
+      transition: all 500ms ease;
+      background-color: $blue;
+      display: block;
+      width: 14px;
+      height: 14px;
+      position: relative;
+      top: -5px;
+      left: 8px;
+      cursor: pointer;
+    }
+
+    .body {
+      transition: all 500ms ease;
+      background-color: $light-gray;
+      margin-top: 25px;
+      padding: 40px;
+      position: relative;
+      height: 175px;
+      cursor: pointer;
+
+      .arrow {
+        transition: all 500ms ease;
+        position: absolute;
+        top: -15px;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-bottom: 15px solid $light-gray;
+      }
+    }
+
+    &.active {
+      .year {
+        color: $dark-gray;
+      }
+
+      .dot,
+      .body {
+        background-color: $dark-gray;
+      }
+
+      .body {
+        color: $white;
+
+        .arrow {
+          border-bottom: 15px solid $dark-gray;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .success-timeline {
+    flex-direction: column;
+    height: 300px;
+
+    .line {
+      display: none;
+    }
+
+    .timeline-year {
+      width: 100%;
+
+      .dot {
+        display: none;
+      }
+
+      .body {
+        position: absolute;
+        background-color: transparent;
+        margin: 0;
+        top: 0;
+        right: 0;
+        width: calc(100% - 80px);
+        box-sizing: border-box;
+        height: 100%;
+        padding: 20px;
+        color: $white;
+
+        div {
+          opacity: 0;
+        }
+
+        .arrow {
+          display: none;
+        }
+      }
+
+      &.active {
+        .body {
+          background-color: transparent;
+
+          div {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    .arrow-sm {
+      display: inline-block;
+
+      & + .timeline-year {
+        .body {
+          background-color: $dark-gray;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,551 @@
+<?php
+
+/**
+ * @file
+ * Theme specific functionality.
+ */
+
+use Drupal\node\Entity\Node;
+use Drupal\file\Entity\File;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\swhr_theme_helpers\Urls;
+use Drupal\swhr_random_banner\EntityHelp;
+
+/**
+ * Implements hook_theme().
+ */
+function swhr_theme($existing, $type, $theme, $path) {
+  return [
+    'swhr_icon' => [
+      'path' => $path . '/templates/swhr',
+      'variables' => ['type' => ''],
+    ],
+    'swhr_underline_link_hidden' => [
+      'path' => $path . '/templates/swhr',
+      'variables' => ['text' => ''],
+    ],
+    'swhr_footer_contact' => [
+      'path' => $path . '/templates/swhr',
+      'variables' => ['linktext' => ''],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function swhr_preprocess_html(&$variables) {
+  $path = \Drupal::service('path.current')->getPath();
+  $alias = trim(\Drupal::service('path.alias_manager')
+    ->getAliasByPath($path), '/');
+  // Body classes for sidebars.
+  if (isset($variables['page']['sidebar_first']) && isset($variables['page']['sidebar_second'])) {
+    $variables['attributes']['class'][] = Html::cleanCssIdentifier('body-sidebars-both');
+  }
+  elseif (isset($variables['page']['sidebar_first'])) {
+    $variables['attributes']['class'][] = Html::cleanCssIdentifier('body-sidebars-first');
+  }
+  elseif (isset($variables['page']['sidebar_second'])) {
+    $variables['attributes']['class'][] = Html::cleanCssIdentifier('body-sidebars-second');
+  }
+  else {
+    $variables['attributes']['class'][] = Html::cleanCssIdentifier('body-sidebars-none');
+  }
+  // Alias path class.
+  $alias_class = preg_replace("/\//", '-', $alias);
+  if (!empty($alias_class) && strpos($alias_class, 'node') !== 0) {
+    $variables['attributes']['class'][] = Html::cleanCssIdentifier('alias--' . $alias_class);
+  }
+  // If is homepage.
+  $variables['attributes']['class'][] = \Drupal::service('path.matcher')
+    ->isFrontPage() ? 'frontpage' : '';
+  // Node type class.
+  $variables['attributes']['class'][] = isset($variables['node_type']) ? 'nodetype--' . $variables['node_type'] : '';
+  // Logged in class.
+  $variables['attributes']['class'][] = $variables['logged_in'] ? 'logged-in' : 'logged-out';
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function swhr_preprocess_page(&$variables) {
+  // Check if page is panel pages.
+  $route_options = \Drupal::routeMatch()->getRouteObject()->getOptions();
+  if (isset($route_options['parameters']['page_manager_page'])) {
+    $variables['attributes']['class'][] = Html::cleanCssIdentifier('page-panel');
+  }
+  else {
+    $variables['attributes']['class'][] = Html::cleanCssIdentifier('page-standard');
+  }
+
+  // Footer Talk To Us.
+  $variables['contact_footer'] = [
+    '#theme' => 'swhr_footer_contact',
+    '#linktext' => t('For more information about Southwestern Health Resources or to find out more about our healthcare options.'),
+  ];
+
+  // Footer Menu 1.
+  $menu_tree = \Drupal::menuTree();
+  $parameters = $menu_tree->getCurrentRouteMenuTreeParameters('footer');
+  $tree = $menu_tree->load('footer', $parameters);
+  // Transform the tree using the manipulators you want.
+  $manipulators = [
+    // Only show links that are accessible for the current user.
+    ['callable' => 'menu.default_tree_manipulators:checkAccess'],
+    // Use the default sorting of menu links.
+    ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+  ];
+  $tree = $menu_tree->transform($tree, $manipulators);
+  $menu = $menu_tree->build($tree);
+
+  $variables['page']['footer']['footer_menu'] = ['#markup' => drupal_render($menu)];
+
+  // Footer Menu 2.
+  $menu_tree = \Drupal::menuTree();
+  $parameters = $menu_tree->getCurrentRouteMenuTreeParameters('footer-secondary-navigation');
+  $tree = $menu_tree->load('footer-secondary-navigation', $parameters);
+  $tree = $menu_tree->transform($tree, $manipulators);
+  $menu = $menu_tree->build($tree);
+
+  $variables['page']['footer']['footer_secondary_menu'] = ['#markup' => drupal_render($menu)];
+
+  // Remove top-of-page local tasks.
+  $variables['tabs'] = '';
+
+  // Error pages.
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name == 'system.404') {
+    $variables['error'] = '404';
+  }
+
+  if ($route_name == 'system.403') {
+    $variables['error'] = '403';
+  }
+}
+
+/**
+ * Implements template_preprocess_swhr_footer_contact().
+ */
+function swhr_preprocess_swhr_footer_contact(&$variables) {
+  // @TODO: Made a method in Links that creates these type of callouts.
+  $variables['url'] = Urls::talkToUs()->toString();
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function swhr_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $content_type = $node->bundle();
+    $suggestions[] = 'page__' . $content_type;
+  }
+
+  $route_name = \Drupal::routeMatch()->getRouteName();
+
+  if (in_array($route_name, ['system.403', 'system.404'])) {
+    $suggestions[] = 'page__error';
+  }
+}
+
+/**
+ * Implements template_preprocess_pager().
+ */
+function swhr_preprocess_pager(&$variables) {
+  if (!empty($variables['current'])) {
+    $current = $variables['current'];
+
+    if ($current == 1) {
+      $variables['current_lower'] = 1;
+    }
+    else {
+      $variables['current_lower'] = 5 * ($current - 1) + 1;
+    }
+
+    $variables['current_upper'] = 5 * $current;
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function swhr_theme_suggestions_pager_alter(array &$suggestions, array $variables) {
+
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name == 'swhr_paramedic.searchpage') {
+    $suggestions[] = 'pager__paramedic';
+  }
+}
+
+/**
+ * Implements template_preprocess_block().
+ */
+function swhr_preprocess_block(&$variables) {
+  // Custom block type helper classes.
+  if (isset($variables['elements']['content']['#block_content'])) {
+    /** @var \Drupal\block_content\Entity\BlockContent $entity */
+    $entity = $variables['elements']['content']['#block_content'];
+    $bundle = $entity->bundle();
+    $bundle_class = str_replace('_', '-', $bundle);
+    if (isset($variables['attributes']['class'])) {
+      $variables['attributes']['class'][] = Html::cleanCssIdentifier('block--bundle-' . $bundle_class);
+      $variables['attributes']['data-bundle-class'] = $bundle_class;
+    }
+    if ($entity->bundle() == 'inline_docsearch') {
+      $form = \Drupal::formBuilder()
+        ->getForm('Drupal\swhr_paramedic\Form\InlineSearchForm');
+      $variables['content'] = [
+        '#theme' => 'swhr_paramedic',
+        '#form_headline' => EntityHelp::getTextValue($entity, 'field_form_headline'),
+        '#intro_text' => EntityHelp::getTextValue($entity, 'field_form_intro_text'),
+        '#form' => $form,
+        '#suffix_text' => EntityHelp::getTextValue($entity, 'field_form_text_suffix'),
+        '#number_of_doctors' => EntityHelp::getTextValue($entity, 'field_number_of_doctors'),
+        '#number_of_hospitals' => EntityHelp::getTextValue($entity, 'field_number_of_hospitals'),
+        '#number_of_facilities' => EntityHelp::getTextValue($entity, 'field_number_of_facilities'),
+        '#background' => '/' . drupal_get_path('module', 'swhr_paramedic') . '/templates/images/Stats_Map_Bg.png',
+        '#attached' => [
+          'library' => ['swhr_paramedic/inlineSearchForm'],
+        ],
+      ];
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_region().
+ */
+function swhr_preprocess_region(&$variables) {
+
+  // Removed conditional for non-popup doc finder page.
+  switch ($variables['region']) {
+    case 'top_bar':
+      $variables['contact'] = swhr_theme_helpers_icon_link_contact();
+      $variables['docfinder'] = swhr_theme_helpers_icon_link_doc_finder();
+      break;
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function swhr_preprocess_node(&$variables) {
+
+  // Helper variables for multiple nodes.
+  if (!empty($variables['elements']['#entity_type'])) {
+    $variables['attributes']['class'][] = Html::cleanCssIdentifier('entity--type-' . $variables['elements']['#entity_type']);
+  }
+  // Add in the variables that are part of the random banner.
+  $variables += swhr_random_banner_get_values($variables['node']);
+  switch ($variables['node']->getType()) {
+    case "medical_staff":
+      /** @var Drupal\node\Entity\Node $node */
+      $node = $variables['elements']['#node'];
+      $docstring = $node->get('field_phys_first_name')->value;
+      if (!empty($node->get('field_phys_middle_name')->value)) {
+        $docstring = $docstring . ' ' . $node->get('field_phys_middle_name')->value;
+      }
+      if (!empty($node->get('field_phys_last_name')->value)) {
+        $docstring = $docstring . ' ' . $node->get('field_phys_last_name')->value;
+      }
+      if ($node->get('field_phys_credentials')->value) {
+        $docstring .= ', ' . $node->get('field_phys_credentials')->value;
+      }
+      $variables['phys_title'] = $docstring;
+      $variables['appointment_link_tertiary'] = swhr_theme_helpers_tertiary_button_appointment($node,
+        ['attributes' => ['data-gtm-tracking' => 'Schedule an Appointment - Staff Page - Bottom']]
+      );
+      $variables['appointment_link_secondary'] = swhr_theme_helpers_secondary_button_appointment(
+        $node,
+        ['attributes' => ['data-gtm-tracking' => 'Schedule an Appointment - Staff Page - Top']]
+      );
+
+      break;
+
+    case "location":
+      $node = $variables['elements']['#node'];
+      $variables['appointment_link'] = swhr_theme_helpers_tertiary_button_appointment(
+        $node,
+        ['attributes' => ['data-gtm-tracking' => 'Schedule an Appointment - Location Page - Top']]
+      );
+      $variables['directions_link_top'] = swhr_theme_helpers_tertiary_button_directions(
+        $node,
+        ['attributes' => ['data-gtm-tracking' => 'Get Direction - Location Page - Top']]
+      );
+      $variables['directions_link_bottom'] = swhr_theme_helpers_tertiary_button_directions(
+        $node,
+        ['attributes' => ['data-gtm-tracking' => 'Get Direction - Location Page - Bottom']]
+      );
+      $variables['doc_finder_link'] = swhr_theme_helpers_tertiary_button_doc_finder($node);
+
+      if ($variables['view_mode'] == 'search_index') {
+
+        $loc_address = $variables['node']->get('field_address')->getValue();
+
+        $variables['zip_code'] = $loc_address[0]['postal_code'];
+      }
+      break;
+
+  }
+
+  if ($variables['view_mode'] !== 'search_results') {
+
+    // Add the edit blocks as a var in the node display pages.
+    // https://drupal.stackexchange.com/questions/171686/how-can-i-programmatically-display-a-block
+    $block_manager = \Drupal::service('plugin.manager.block');
+    $config = [];
+    $local_tasks = $block_manager->createInstance('local_tasks_block', $config);
+    $variables['edit_links'] = $local_tasks->build();
+
+    // Now add  the breadcrumbs...
+    $crumbs_block = $block_manager->createInstance('system_breadcrumb_block', $config);
+    $variables['crumbs'] = $crumbs_block->build();
+  }
+
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function swhr_preprocess_paragraph(&$variables) {
+
+  $entity = $variables['elements']['#paragraph'];
+  if ($entity->hasField('field_colorize_background')) {
+    if ($entity->get('field_colorize_background')->value == '1') {
+      $variables['attributes']['class'][] = 'bg-lightblue';
+    }
+  }
+  /*
+  //Todo: Add Edit Links After Video Header.
+  if($variables['paragraph']->bundle() == 'video_header') {
+  $block_manager = \Drupal::service('plugin.manager.block');
+  $config = [];
+  $local_tasks = $block_manager->createInstance('local_tasks_block', $config);
+  $variables['video_header_edit_links'] = $local_tasks->build();
+  }
+   */
+
+  // Add Home Class for home page video header to add home-only animation.
+  if ($variables['paragraph']->bundle() == 'video_header') {
+    $current_path = \Drupal::service('path.current')->getPath();
+    $result = \Drupal::service('path.alias_manager')
+      ->getAliasByPath($current_path);
+    if (str_replace('/', '', $result) == 'our-story') {
+      $variables['attributes']['page_class'] = 'masthead--home';
+    }
+    else {
+      $variables['attributes']['page_class'] = 'masthead--' . str_replace('/', '', $result);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function swhr_preprocess_field(&$variables) {
+
+  // Preprocess video field to add poster -- text and graphic.
+  if ($variables['element']['#field_name'] == 'field_video') {
+
+    $paragraph_id = $variables['element']['#object']->id();
+
+    $paragraph = Paragraph::load($paragraph_id);
+
+    $image = $paragraph->get('field_video_static_image')->getValue();
+
+    $image_id = $image[0]['target_id'];
+
+    $file = File::load($image_id);
+    $path = file_create_url($file->getFileUri());
+
+    $variables['items'][0]['content']['#player_attributes']['poster'] = $path;
+  }
+
+  // Preprocess video field to add poster -- spotlight.
+  if ($variables['element']['#field_name'] == 'field_spotlight_video') {
+
+    $nid = $variables['element']['#object']->id();
+
+    $node = Node::load($nid);
+
+    $image = $node->get('field_spotlight_video_static_img')->getValue();
+
+    $image_id = $image[0]['target_id'];
+
+    $file = File::load($image_id);
+    $path = file_create_url($file->getFileUri());
+
+    $variables['items'][0]['content']['#player_attributes']['poster'] = $path;
+  }
+
+  if ($variables['element']['#field_name'] == 'field_vh_content') {
+    $current_path = \Drupal::service('path.current')->getPath();
+    $result = \Drupal::service('path.alias_manager')
+      ->getAliasByPath($current_path);
+
+    if (str_replace('/', '', $result) != 'our-story') {
+      $variables['section_landing'] = TRUE;
+    }
+  }
+
+  // Addresses for search index results.
+  if ($variables['element']['#field_name'] == 'field_phys_locations' && $variables['element']['#view_mode'] == 'search_index') {
+
+    foreach ($variables['items'] as $index => $item) {
+      $loc_id = $item['content']['#plain_text'];
+      if ($loc_id) {
+
+        $loc_node = Node::load($loc_id);
+
+        $variables['items'][$index]['title'] = $loc_node->getTitle();
+
+        $loc_address = $loc_node->get('field_address')->getValue();
+        $variables['items'][$index]['zip_code'] = $loc_address[0]['postal_code'];
+      }
+    }
+  }
+
+}
+
+/**
+ * Implements template_preprocess_HOOK.
+ */
+function swhr_preprocess_views_view_fields(&$variables) {
+  if ($variables['view']->id() == 'searchresults' && $variables['view']->current_display == 'page_3') {
+    $variables['content_type'] = $variables['row']->_entity->getType();
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function swhr_theme_suggestions_views_view_fields_alter(array &$suggestions, array $variables) {
+  if ($variables['view']->id() == 'searchresults' && $variables['view']->current_display == 'page_3') {
+    $suggestions[] = 'views_view_fields__map_popup';
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for \Drupal\node\NodeForm.
+ *
+ * Changes vertical tabs to container and adds meta information.
+ * Code borrowed from Seven theme.
+ */
+function swhr_form_node_form_alter(&$form, FormStateInterface $form_state) {
+  $node = $form_state->getFormObject()->getEntity();
+  $form['#theme'] = ['node_edit_form'];
+  $form['advanced']['#type'] = 'container';
+  $is_new = !$node->isNew() ? format_date($node->getChangedTime(), 'short') : t('Not saved yet');
+  $form['meta'] = [
+    '#attributes' => ['class' => ['entity-meta__header']],
+    '#type' => 'container',
+    '#group' => 'advanced',
+    '#weight' => -100,
+    'published' => [
+      '#type' => 'html_tag',
+      '#tag' => 'h3',
+      '#value' => $node->isPublished() ? t('Published') : t('Not published'),
+      '#access' => !$node->isNew(),
+      '#attributes' => [
+        'class' => 'entity-meta__title',
+      ],
+    ],
+    'changed' => [
+      '#type' => 'item',
+      '#wrapper_attributes' => [
+        'class' => [
+          'entity-meta__last-saved',
+          'container-inline',
+        ],
+      ],
+      '#markup' => '<h4 class="label inline">' . t('Last saved') . '</h4> ' . $is_new,
+    ],
+    'author' => [
+      '#type' => 'item',
+      '#wrapper_attributes' => [
+        'class' => [
+          'author',
+          'container-inline',
+        ],
+      ],
+      '#markup' => '<h4 class="label inline">' . t('Author') . '</h4> ' . $node->getOwner()
+        ->getUsername(),
+    ],
+  ];
+  $form['revision_information']['#type'] = 'container';
+  $form['revision_information']['#group'] = 'meta';
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function swhr_theme_suggestions_form_element_alter(array &$suggestions, array $variables) {
+  $element = $variables['element'];
+  if (isset($element['#webform_key'])) {
+    $contact_form_items = [
+      'full_name',
+      'email_address',
+      'contact_phone',
+      'talk_to_us_form_footer_text',
+      'message',
+    ];
+    if (in_array($element['#webform_key'], $contact_form_items)) {
+      // Is this being used??
+      $suggestions[] = 'form_element__contact_form';
+    }
+  }
+
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function swhr_theme_suggestions_fieldset_alter(array &$suggestions, array $variables) {
+  $attributes = $variables['element']['#attributes'];
+  if (isset($attributes['class']) && in_array('full-search-form', $attributes['class'])) {
+    $suggestions[] = 'fieldset__full_search_form';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function swhr_theme_suggestions_radios_alter(array &$suggestions, array $variables) {
+  $element = $variables['element'];
+  if (isset($element['#webform_id']) && $element['#webform_id'] == 'contact--talk_to_us') {
+    $suggestions[] = 'radios__talk_to_us';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function swhr_theme_suggestions_views_view_field_alter(array &$suggestions, array $variables) {
+
+  if ($variables['view']->id() == 'doc_finder' && $variables['field']->field == 'field_thumbnail_url') {
+    $suggestions[] = 'views_view_field__docthumb';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function swhr_theme_suggestions_field_alter(array &$suggestions, array $variables) {
+
+  if ($variables['element']['#view_mode'] == 'search_index' && $variables['element']['#field_name'] == 'field_phys_locations') {
+    $suggestions[] = 'field__node__field_phys_locations__search_index';
+  }
+}
+
+/**
+ * Implements hook_suggestions_input_alter().
+ */
+function swhr_theme_suggestions_input_alter(&$suggestions, array $variables) {
+  $element = $variables['element'];
+
+  if (isset($element['#attributes']['data-twig-suggestion'])) {
+    $suggestions[] = 'input__' . $element['#type'] . '__' . $element['#attributes']['data-twig-suggestion'];
+  }
+}

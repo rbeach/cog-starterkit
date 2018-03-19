@@ -1,0 +1,144 @@
+// Button
+//
+// These are various button styles
+//
+// :hover   - Hover State
+// .button--secondary - Secondary button style
+// .button--secondary:hover - Secondary button hover
+//
+// Weight: 49
+//
+// Markup: button.twig
+//
+// Style guide: atom.button
+button,
+.button,
+a.button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  @include font-aliasing();
+
+  background: $button-primary-bkgrnd;
+  border: solid 1px $button-primary-bkgrnd;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  color: $button-primary-color;
+  display: inline-block;
+  font-size: 14px;
+  font-size: rem-calc(14px);
+  font-weight: 900;
+  line-height: 1;
+  padding: 23px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in;
+
+  &::before {
+    content: normal;
+    display: none;
+  }
+
+  &:hover {
+    background: $white;
+    color: $button-primary-bkgrnd;
+    text-decoration: none;
+  }
+
+  &.icon-before {
+    [class^="swhrcon-"],
+    [class*=" swhrcon-"] {
+      line-height: 0;
+      position: relative;
+      top: 9px;
+      padding-right: 18px;
+    }
+  }
+
+  @media all and (max-width: 767px) {
+    padding: 15px 20px;
+  }
+}
+
+//Transparent
+.button--secondary,
+a.button--secondary {
+  background: $button-secondary-bkgrnd;
+  border: solid 1px $dark-gray;
+  color: $black;
+
+  &:link,
+  &:visited {
+    color: $black;
+  }
+
+  &:hover {
+    background: $white;
+    border-color: $button-primary-bkgrnd;
+    color: $button-primary-bkgrnd;
+    text-decoration: none;
+  }
+
+  @extend .button;
+}
+
+//Tertiary button used on dark backgrounds and footer
+.button--tertiary,
+a.button--tertiary {
+  background: $button-secondary-bkgrnd;
+  border: solid 1px $white;
+  color: $white;
+
+  &:hover {
+    background: $white;
+    border-color: $button-primary-bkgrnd;
+    color: $button-primary-bkgrnd;
+    text-decoration: none;
+  }
+
+  @extend .button;
+}
+
+.button--tertiary--alt,
+a.button--tertiary--alt {
+  background: $button-secondary-bkgrnd;
+  border: solid 1px $black;
+  color: $black;
+
+  &:hover {
+    background: $white;
+    border-color: $button-primary-bkgrnd;
+    color: $button-primary-bkgrnd;
+    text-decoration: none;
+  }
+
+  @extend .button;
+}
+
+.ui-dialog-titlebar-close {
+  background: none;
+  border: none;
+  color: $black;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -9999em;
+
+  &:hover {
+    background: none;
+  }
+
+  //&::before {
+  //  content: "\e904";
+  //  display: block;
+  //  font-family: 'swhr-icons' !important;
+  //  speak: none;
+  //  font-style: normal;
+  //  font-size: 32px;
+  //  font-size: 2rem;
+  //  font-weight: normal;
+  //  font-variant: normal;
+  //  text-transform: none;
+  //  line-height: 1;
+  //}
+}

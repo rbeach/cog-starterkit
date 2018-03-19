@@ -1,0 +1,24 @@
+// Related Article
+//
+// Block with article image and title
+//
+// Weight: 2
+//
+// Style guide: molecule.related_article
+
+.related-article {
+  padding-top: 150px;
+  margin-top: 20px;
+  background-size: contain;
+
+  span {
+    display: block;
+    font-weight: 500;
+    font-family: $heading_font;
+    font-size: 18px;
+    font-size: rem-calc(18px);
+    line-height: 1.45;
+    background-color: $light-gray;
+    padding: 30px 20px;
+  }
+}

@@ -1,0 +1,79 @@
+{#
+/**
+ * @file
+ * Theme override to display all the fields in a row.
+ *
+ * Available variables:
+ * - view: The view in use.
+ * - fields: A list of fields, each one contains:
+ *   - content: The output of the field.
+ *   - raw: The raw data for the field, if it exists. This is NOT output safe.
+ *   - class: The safe class ID to use.
+ *   - handler: The Views field handler controlling this field.
+ *   - inline: Whether or not the field should be inline.
+ *   - wrapper_element: An HTML element for a wrapper.
+ *   - wrapper_attributes: List of attributes for wrapper element.
+ *   - separator: An optional separator that may appear before a field.
+ *   - label: The field's label text.
+ *   - label_element: An HTML element for a label wrapper.
+ *   - label_attributes: List of attributes for label wrapper.
+ *   - label_suffix: Colon after the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ *   - has_label_colon: A boolean indicating whether to display a colon after
+ *     the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ * - row: The raw result from the query, with all data it fetched.
+ *
+ * @see template_preprocess_views_view_fields()
+ */
+#}
+{#medical staff fields#}
+{% if content_type == 'medical_staff' %}
+  {{ fields.field_large_profile_image.content }}
+  <div class="title">
+    {{ fields.field_phys_last_name.content }}
+    <div>{{ fields.title_1.content }}</div>
+  </div>
+  <div class="address-line-1">
+    {{ fields.field_address_address_line1.content }}
+  </div>
+  <div class="address-line-2">
+    {{ fields.field_address_address_line2.content }}
+  </div>
+  <div class="city-state">
+    {% if fields.field_address_locality.content and fields.field_address_administrative_area.content %}
+      {{fields.field_address_locality.content}}<span>, </span>{{fields.field_address_administrative_area.content}}
+    {% else %}
+      {{ fields.field_address_locality.content }}
+      {{ fields.field_address_administrative_area.content }}
+    {% endif %}
+    {{ fields.field_address_postal_code.content }}
+  </div>
+  <div>
+    {{ fields.field_phys_phone.content }}
+  </div>
+{% else %}
+  <div class="title">
+    {{ fields.title.content }}
+  </div>
+  <div class="address-line-1">
+    {{ fields.field_address_address_line1_1.content }}
+  </div>
+  <div class="address-line-2">
+    {{ fields.field_address_address_line2_1.content }}
+  </div>
+  <div class="city-state">
+    {% if fields.field_address_locality_1.content and fields.field_address_administrative_area_1.content %}
+      {{fields.field_address_locality_1.content}}<span>, </span>{{fields.field_address_administrative_area_1.content}}
+    {% else %}
+      {{ fields.field_address_locality_1.content }}
+      {{ fields.field_address_administrative_area_1.content }}
+    {% endif %}
+    {{ fields.field_address_postal_code_1.content }}
+  </div>
+  <div>
+    {{ fields.field_phys_phone_1.content }}
+  </div>
+{% endif %}

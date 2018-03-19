@@ -1,0 +1,70 @@
+
+//Content Width Rules
+$content-width: 1140px;
+$grid-columns: 12;
+
+$susy: (
+  columns: $grid-columns,
+  math: fluid,
+  gutter-position: after,
+  gutters: 1/4,
+  global-box-sizing: border-box,
+  use-custom: (rem: true),
+  container: $content-width
+);
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@mixin flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@for $i from 1 through $grid-columns {
+  .span#{$i} {
+    width: span($i);
+
+    @media all and (max-width: 767px) {
+      width: 100%;
+    }
+  }
+}
+
+//Class to re-order flex-container children
+@for $i from 1 through $grid-columns {
+  .mobile-order#{$i} {
+    @media all and (max-width: 767px) {
+      order: $i;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .field--name-field-left-content {
+    margin-top: 10px;
+  }
+
+  .field--name-field-right-content {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (min-width: 768px + 1px) {
+  .field--type-text-long,
+  .paragraph--type--two-column-content {
+    .flex-container > .span6 {
+      box-sizing: border-box;
+      padding-right: 20px;
+
+      & + .span6 {
+        padding-right: 0;
+        padding-left: 20px;
+      }
+    }
+  }
+}

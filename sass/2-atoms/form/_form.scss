@@ -1,0 +1,313 @@
+// Form Elements
+//
+// Base form elements.
+//
+// Markup: form_html.twig
+//
+// Weight: 50
+//
+// Style guide: atom.form_common
+
+//Form item -- wrapper
+.form-item {
+  margin-bottom: 30px;
+
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="month"],
+  input[type="week"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="time"],
+  input[type="url"],
+  textarea,
+  select {
+    margin-bottom: 0;
+    width: 100%;
+  }
+}
+
+form {
+  margin: 0 0 1em;
+}
+
+label {
+  display: inline-block;
+  color: #000;
+  cursor: pointer;
+  font-weight: 600;
+  margin: 0 0 0.1875em;
+  padding-right: 4px;
+  vertical-align: top;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea {
+  background-color: white;
+  font-family: inherit;
+  border: 1px solid $lighter-gray;
+  color: rgba(0, 0, 0, 0.75);
+  display: block;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 2.875;
+  height: 64px;
+  width: auto;
+  margin: 0 0 1em;
+  padding: 0.5rem rem-calc(20px);
+  box-sizing: border-box;
+  transition: box-shadow 0.45s, border-color 0.45s ease-in-out;
+}
+
+//line height override for textarea
+textarea {
+  line-height: 2.8;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="date"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="month"]:focus,
+input[type="week"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="time"]:focus,
+input[type="url"]:focus,
+textarea:focus {
+  //box-shadow: 0 0 5px $light-gray;
+  border-color: $black;
+  background: white;
+  outline: none;
+}
+
+input[type="file"],
+input[type="checkbox"],
+input[type="radio"],
+select {
+  margin: 0 0 1em;
+}
+
+input[type="file"] {
+  width: 100%;
+}
+
+fieldset {
+  border: solid 1px $light-gray;
+  padding: 1.25em;
+  margin: 1.125em 0;
+}
+
+fieldset legend {
+  font-weight: bold;
+  background: #fff;
+  padding: 0 0.1875em;
+  margin: 0;
+  margin-left: -0.1875em;
+}
+
+//Select Lists
+div.select-wrapper,
+.form-item.form-type-select {
+  position: relative;
+
+  select {
+    background-image: url('/themes/custom/swhr/images/dropdown-arrow.png');
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-position: right 18px top 21px;
+    width: 100%;
+  }
+
+  //&::after {
+  //  background: $white;
+  //  content: '\e908';
+  //  font-family: 'swhr-icons' !important;
+  //  speak: none;
+  //  font-style: normal;
+  //  font-size: 32px;
+  //  font-size: 2rem;
+  //  font-weight: normal;
+  //  font-variant: normal;
+  //  text-transform: none;
+  //  line-height: 1;
+  //  position: absolute;
+  //  right: 15px;
+  //  top: 16px;
+  //}
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: $white;
+  border-radius: 0;
+  border: solid 1px $med-gray;
+  padding: 18px 1.25rem;
+}
+
+// Error conditions ////////////////////////////
+.error {
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="month"],
+  input[type="week"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="time"],
+  input[type="url"],
+  textarea {
+    border-color: $error-red;
+    margin-bottom: 0;
+
+    &:focus {
+      border-color: $black;
+    }
+  }
+}
+
+.error input:focus,
+.error textarea:focus,
+.error select:focus {
+  background: $off-white;
+  border-color: $light-gray;
+}
+
+.error label,
+.error label.error {
+  color: $error-red;
+}
+
+.error > small,
+.error small.error {
+  display: block;
+  padding: 0.375em 0.25em;
+  margin-top: 0;
+  margin-bottom: 1em;
+  font-size: 0.75em;
+  font-weight: bold;
+  background: $error-red;
+  color: #fff;
+}
+
+.error span.error-message {
+  color: $error-red;
+  display: block;
+  font-size: 14px;
+  font-size: rem-calc(14px);
+  line-height: 1;
+  padding: 0 20px;
+  margin-top: 10px;
+}
+
+input.error,
+textarea.error {
+  border-color: $error-red;
+  background-color: rgba(198, 15, 19, 0.1);
+  margin-bottom: 0;
+}
+
+input.error:focus,
+textarea.error:focus {
+  background: $off-white;
+  border-color: $light-gray;
+}
+
+.error select {
+  border-color: $error-red;
+  background-color: rgba(198, 15, 19, 0.1);
+}
+
+.error select:focus {
+  background: $off-white;
+  border-color: $light-gray;
+}
+
+label.error {
+  color: $error-red;
+}
+// HTML5 Form Elements
+//
+// Markup: form_html5.twig
+//
+// Weight: 51
+//
+// Style guide: atom.html5
+form input[disabled],
+form button[disabled] {
+  background-color: $light-gray;
+  box-shadow: none;
+
+  &:hover {
+    background-color: $light-gray;
+  }
+}
+// simple transitions ////////////////////
+form button,
+form input {
+  transition: all 0.3s ease;
+
+  &[disabled] {
+    transition: auto;
+  }
+}
+
+// Placeholder Color
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $greyed-out;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+  color: $greyed-out;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+  color: $greyed-out;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: $greyed-out;
+}
+
+.js input.form-autocomplete {
+  background: $white;
+}
+
+//Responsive
+//------------------------
+@media all and (max-width: 767px) {
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  textarea {
+    //font-size: 14px;
+    //font-size: rem-calc(14px);
+    //line-height: 1;
+  }
+}
