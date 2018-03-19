@@ -1,0 +1,17 @@
+<section>
+  <div class="container flex-container">
+    <div class="span12">
+      <div class="pad-80"/>
+      <h3 style="text-align:center;">Basics about Medicare health care coverage options.</h3>
+      <div class="pad-40"/>
+    </div>
+    <div class="span12">
+      <div class="container flex-container"> 
+        {% include 'medicare_row.twig' with { title: 'Type of Coverage', cellOne: '<strong>Original Medicare</strong><br/><br/><strong>Medicare Part A</strong> (Hospitals)<br/><strong>Medicare Part B</strong> (Doctors)', cellTwo: '<strong>Original Medicare</strong><br/><br/><strong>Medicare Part A</strong> (Hospitals)<br/><strong>Medicare Part B</strong> (Doctors)', cellThree: '<strong>Original Medicare</strong><br/><br/><strong>Medicare Part A</strong> (Hospitals)<br/><strong>Medicare Part B</strong> (Doctors)' } %}
+        {% include 'medicare_row.twig' with { title: 'Eligible for Coordinated Care Available Through an ACO', cellOne: 'Yes', cellTwo: 'Maybe<br/><br/>May be able to participate based on your plan', cellThree: 'Maybe' } %}
+        {% include 'medicare_row.twig' with { title: 'Basics About Types of Coverage', cellOne: '<strong>Original Medicare</strong><br/><br/><strong>Medicare Part A</strong> (Hospitals)<br/><strong>Medicare Part B</strong> (Doctors)', cellTwo: '<strong>Original Medicare</strong><br/><br/><strong>Medicare Part A</strong> (Hospitals)<br/><strong>Medicare Part B</strong> (Doctors)', cellThree: '<strong>Original Medicare</strong><br/><br/><strong>Medicare Part A</strong> (Hospitals)<br/><strong>Medicare Part B</strong> (Doctors)' } %}
+      </div>
+    </div>
+    <div class="pad-40"/>
+  </div>
+</section>

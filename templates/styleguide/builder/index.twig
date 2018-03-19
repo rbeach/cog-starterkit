@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ options.title }}</title>
+
+  <meta name="description" content="">
+  <meta name="generator" content="kss-node">
+  <meta name="viewport" content="width=device-width">
+  <link href="https://fonts.googleapis.com/css?family=Adamina|Muli:400,700,800" rel="stylesheet">
+  {{ styles|raw }}
+  <link rel="stylesheet" href="/core/themes/stable/css/system/components/hidden.module.css?p0lnl7">
+  <script src="/core/assets/vendor/modernizr/modernizr.min.js?v=3.3.1"></script>
+</head>
+<body id="kss-node">
+{%
+set pages = [
+ 'page_home',
+ 'page_consumer_landing',
+ 'page_doctor_landing',
+ 'page_employer_landing',
+ 'page_doc_profile',
+ 'page_location',
+ 'page_about_us',
+ 'page_population_health_services',
+ 'page_leading_edge_care',
+ 'page_aco_performance',
+ 'page_aco_network',
+ 'page_spotlight_article',
+]
+%}
+{% if sections.0.reference in [
+    'page_home', 
+    'page_about_us', 
+    'page_consumer_landing', 
+    'page_doctor_landing', 
+    'page_employer_landing', 
+    'page_population_health_services',
+    'page_leading_edge_care',
+    'page_aco_performance',
+    'page_aco_network', 
+    'page_spotlight_article'
+  ] 
+%}
+  {% set classes = 'drupal-page nodetype--section_landing' %}
+{% elseif sections.0.reference in ['page_location'] %}
+  {% set classes = 'drupal-page interior-page nodetype--location' %}
+{% elseif sections.0.reference in ['page_doc_profile'] %}
+  {% set classes = 'drupal-page interior-page nodetype--doctor' %}
+{% endif %}
+
+<div class="page-standard {{ classes }}" id="pg__c">
+
+  <!-- ______________________ TOP BAR _______________________ -->
+
+  <header id="top-bar">
+    {% include '../components/top_bar/top_bar.twig' %}
+  </header>
+  <!-- /top-bar -->
+
+
+  <!-- ______________________ HEADER _______________________ -->
+
+  <header id="header">
+    {% if sections.0.reference in pages %}
+      {% include 'pages/' ~ sections.0.reference ~ '/' ~ sections.0.reference ~ '_header.twig' %}
+    {% else %}
+      {% include '../components/header/header.twig' %}
+    {% endif %}
+  </header>
+  <!-- /header -->
+
+  <!-- ______________________ MAIN _______________________ -->
+
+  <div class="clearfix" id="main">
+    <div class="cog--mq mq-main">
+      <section id="content">
+        <div class="content-area" id="content-area">
+          {% if homepage %}
+            <section class="kss-landing">
+              <h3>Southwestern Health Resources Style Guide</h3>
+              {% include 'styleguide_pages.twig' %}
+            </section>
+          {% elseif sections.0.reference in pages %}
+            {% include 'pages/' ~ sections.0.reference ~ '/' ~ sections.0.reference ~ '.twig' %}
+          {#{% else %}#}
+            {#{% include 'styleguide_sections.twig' %}#}
+          {% endif %}
+        </div>
+      </section>
+      <!-- /content-inner /content -->
+    </div>
+    <!-- /cog--mq -->
+  </div>
+  <!-- /main -->
+
+  <!-- ______________________ FOOTER _______________________ -->
+
+  <footer id="footer">
+    <div class="mq-footer">
+      {% include '../components/footer/footer.twig' %}
+    </div>
+  </footer>
+  <!-- /footer -->
+
+</div>
+<!-- /page -->
+{% include '../components/scripts.twig' %}
+{{ scripts|raw }}
+</body>
+</html>

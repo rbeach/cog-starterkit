@@ -1,0 +1,6 @@
+<section class="callout-box" style="{% if background_image != null %}background-image: url({{ background_image }});{% endif %}{% if background_color != null %}background-color: {{ background_color }};{% endif %}">
+  {% if bg_copy != null %}<div class="bg-copy">{{ bg_copy }}</div>{% endif %}
+  <p>
+    {{ body_copy | raw }}
+  </p>
+</section>
