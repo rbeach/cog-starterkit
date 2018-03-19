@@ -15,7 +15,7 @@ module.exports = function (gulp, plugins, options) {
     'compile:styleguide',
     'lint:js-gulp',
     'lint:js-with-fail',
-    'lint:css-with-fail'
+    // 'lint:css-with-fail'
   ]);
 
   gulp.task('build:dev', [
