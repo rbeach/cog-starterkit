@@ -37,9 +37,9 @@ form {
 }
 
 label {
-  display: inline-block;
   color: #000;
   cursor: pointer;
+  display: inline-block;
   font-weight: 600;
   margin: 0 0 0.1875em;
   padding-right: 4px;
@@ -60,20 +60,20 @@ input[type="tel"],
 input[type="time"],
 input[type="url"],
 textarea {
-  background-color: white;
-  font-family: inherit;
+  background-color: $white;
   border: 1px solid $lighter-gray;
+  box-sizing: border-box;
   color: rgba(0, 0, 0, 0.75);
   display: block;
+  font-family: inherit;
   font-size: 16px;
   font-size: 1rem;
-  line-height: 2.875;
   height: 64px;
-  width: auto;
+  line-height: 2.875;
   margin: 0 0 1em;
   padding: 0.5rem rem-calc(20px);
-  box-sizing: border-box;
   transition: box-shadow 0.45s, border-color 0.45s ease-in-out;
+  width: auto;
 }
 
 //line height override for textarea
@@ -97,8 +97,8 @@ input[type="time"]:focus,
 input[type="url"]:focus,
 textarea:focus {
   //box-shadow: 0 0 5px $light-gray;
+  background: $white;
   border-color: $black;
-  background: white;
   outline: none;
 }
 
@@ -115,56 +115,16 @@ input[type="file"] {
 
 fieldset {
   border: solid 1px $light-gray;
-  padding: 1.25em;
   margin: 1.125em 0;
+  padding: 1.25em;
 }
 
 fieldset legend {
-  font-weight: bold;
   background: #fff;
-  padding: 0 0.1875em;
+  font-weight: bold;
   margin: 0;
   margin-left: -0.1875em;
-}
-
-//Select Lists
-div.select-wrapper,
-.form-item.form-type-select {
-  position: relative;
-
-  select {
-    background-image: url('/themes/custom/swhr/images/dropdown-arrow.png');
-    background-attachment: scroll;
-    background-repeat: no-repeat;
-    background-position: right 18px top 21px;
-    width: 100%;
-  }
-
-  //&::after {
-  //  background: $white;
-  //  content: '\e908';
-  //  font-family: 'swhr-icons' !important;
-  //  speak: none;
-  //  font-style: normal;
-  //  font-size: 32px;
-  //  font-size: 2rem;
-  //  font-weight: normal;
-  //  font-variant: normal;
-  //  text-transform: none;
-  //  line-height: 1;
-  //  position: absolute;
-  //  right: 15px;
-  //  top: 16px;
-  //}
-}
-
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: $white;
-  border-radius: 0;
-  border: solid 1px $med-gray;
-  padding: 18px 1.25rem;
+  padding: 0 0.1875em;
 }
 
 // Error conditions ////////////////////////////
@@ -206,14 +166,14 @@ select {
 
 .error > small,
 .error small.error {
-  display: block;
-  padding: 0.375em 0.25em;
-  margin-top: 0;
-  margin-bottom: 1em;
-  font-size: 0.75em;
-  font-weight: bold;
   background: $error-red;
   color: #fff;
+  display: block;
+  font-size: 0.75em;
+  font-weight: bold;
+  margin-bottom: 1em;
+  margin-top: 0;
+  padding: 0.375em 0.25em;
 }
 
 .error span.error-message {
@@ -222,14 +182,14 @@ select {
   font-size: 14px;
   font-size: rem-calc(14px);
   line-height: 1;
-  padding: 0 20px;
   margin-top: 10px;
+  padding: 0 20px;
 }
 
 input.error,
 textarea.error {
-  border-color: $error-red;
   background-color: rgba(198, 15, 19, 0.1);
+  border-color: $error-red;
   margin-bottom: 0;
 }
 
@@ -240,8 +200,8 @@ textarea.error:focus {
 }
 
 .error select {
-  border-color: $error-red;
   background-color: rgba(198, 15, 19, 0.1);
+  border-color: $error-red;
 }
 
 .error select:focus {
@@ -297,17 +257,4 @@ form input {
 
 .js input.form-autocomplete {
   background: $white;
-}
-
-//Responsive
-//------------------------
-@media all and (max-width: 767px) {
-  input[type="text"],
-  input[type="password"],
-  input[type="date"],
-  textarea {
-    //font-size: 14px;
-    //font-size: rem-calc(14px);
-    //line-height: 1;
-  }
 }

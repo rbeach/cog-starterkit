@@ -1,9 +1,9 @@
 // Base HTML Elements.
 html,
 body {
+  margin: 0;
   min-height: 100%;
   padding: 0;
-  margin: 0;
 }
 
 html {
@@ -31,18 +31,18 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 500;
   font-family: $heading_font;
-  padding: 0 0 0.3em;
+  font-weight: 500;
   margin: 0;
+  padding: 0 0 0.3em;
 }
 
 h1 {
   font-family: $muli;
   font-size: 60px;
   font-size: rem-calc(60px);
-  line-height: 1.1;
   font-weight: 700;
+  line-height: 1.1;
   padding-bottom: 10px;
 
   span {
@@ -120,8 +120,8 @@ p {
 }
 
 body .menu-item {
-  padding-top: 0;
   margin: 0;
+  padding-top: 0;
 }
 // Base Text
 //
@@ -138,8 +138,8 @@ body p {
 // Responsive Images
 img,
 svg {
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
 }
 
 //Reduce fuzziness of downscaled images
@@ -174,12 +174,12 @@ address {
 //
 // Style guide: atom.blockquote
 blockquote {
-  padding: 0 15px 0 35px;
   font-family: $adamina;
   font-size: 20px;
   font-size: rem-calc(20px);
   line-height: 1.4;
   margin: 0;
+  padding: 0 15px 0 35px;
   position: relative;
 
   .bq--quotation-mark {
@@ -212,21 +212,21 @@ blockquote {
 
 .field--name-field-article-body {
   p + blockquote {
-    margin-top: 20px;
     margin-bottom: 20px;
+    margin-top: 20px;
   }
 }
 
 pre {
-  white-space: pre-wrap;
   overflow-x: auto;
+  white-space: pre-wrap;
 
   code {
-    border: 1px dotted $dark-gray;
     background: $off-white;
-    padding: 2px 9px;
+    border: 1px dotted $dark-gray;
     display: block;
     font-size: 85%;
+    padding: 2px 9px;
   }
 }
 // List Types
@@ -239,8 +239,8 @@ pre {
 
 // OL items
 ol {
-  padding: 0 0 0 10px;
   margin: 0 0 10px;
+  padding: 0 0 0 10px;
 
   li {
     margin: 4px 0;
@@ -258,8 +258,8 @@ ol ol ol {
 
 // UL items
 ul {
-  padding: 0 0 0 10px;
   margin: 0 0 10px;
+  padding: 0 0 0 10px;
 
   li {
     margin: 4px 0;
@@ -285,10 +285,10 @@ table {
   width: 100%;
 
   th {
-    font-weight: 600;
-    text-align: left;
     background-color: $off-white;
+    font-weight: 600;
     padding: 4px 5px;
+    text-align: left;
   }
 
   td {
@@ -308,8 +308,8 @@ table {
 
   tbody tr:nth-child(even) {
     background-color: $off-white;
-    border-top: 1px solid $off-white;
     border-bottom: 1px solid $off-white;
+    border-top: 1px solid $off-white;
   }
 }
 
@@ -325,37 +325,4 @@ hr {
 
 .text-center {
   text-align: center;
-}
-
-@media screen and (max-width: 768px) {
-  .hidden-sm {
-    display: none;
-  }
-
-  .body-text-small p {
-    font-size: 0.8em;
-  }
-}
-
-@media screen and (min-width: 768px + 1px) {
-  blockquote {
-    font-size: 24px;
-    font-size: rem-calc(24px);
-  }
-
-  .text-right--md {
-    text-align: right;
-  }
-
-  .text-center--md {
-    text-align: center;
-  }
-
-  .hidden-lg {
-    display: none;
-  }
-
-  .body-text-small p {
-    font-size: 0.9em;
-  }
 }

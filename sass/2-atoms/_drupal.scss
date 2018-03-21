@@ -12,14 +12,14 @@ body {
   }
 
   ul.links.inline {
-    padding: 0;
     margin: 0;
+    padding: 0;
 
     li {
       @extend .no-ul-list;
 
-      padding: 0 9px 3px 0;
       display: inline-block;
+      padding: 0 9px 3px 0;
     }
   }
 }
@@ -33,8 +33,8 @@ form .form-item {
 }
 
 form .description {
-  font-style: italic;
   font-size: 90%;
+  font-style: italic;
   margin-bottom: 3px;
 }
 
@@ -48,9 +48,9 @@ form .description {
 }
 
 .layout-node-form .layout-region-node-footer {
-  padding-top: 20px;
-  margin-top: 20px;
   border-top: 1px solid $off-white;
+  margin-top: 20px;
+  padding-top: 20px;
 }
 
 form details.js-form-wrapper {

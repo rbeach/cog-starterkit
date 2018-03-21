@@ -7,7 +7,7 @@
 }
 
 @function rem-calc($size) {
-  $remSize: strip-unit($size / 16);
+  $rem-size: strip-unit($size / 16);
 
-  @return #{$remSize}rem;
+  @return #{$rem-size}rem;
 }

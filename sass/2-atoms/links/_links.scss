@@ -1,104 +1,11 @@
 //Links
-//Default links are black with animated underline
+//Default links are blue
 
 a,
 a.link-blue {
   color: $link-blue;
   font-weight: normal;
-  position: relative;
   overflow: hidden;
+  position: relative;
   text-decoration: none;
-}
-
-// A More link
-//Ex. Used in Icon CTAs on Home page
-.more-link,
-.more-link:link,
-.more-link:visited {
-  display: inline-block;
-  font-weight: 300;
-  overflow: hidden;
-  text-transform: uppercase;
-}
-
-span.underline-link {
-  display: inline-block;
-  position: relative;
-
-  a {
-    color: $black;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 1px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: $black;
-  }
-
-  &:hover {
-    text-decoration: none;
-
-    &::before {
-      //animation: swipe 700ms linear;
-      content: '';
-      height: 1px;
-      animation: swipe 700ms cubic-bezier(0.694, 0, 0.335, 1);
-    }
-  }
-
-  &.white {
-    &::before {
-      background-color: $white;
-    }
-
-    a {
-      color: $white;
-    }
-  }
-}
-
-span.underline-link--hidden {
-  display: inline-block;
-  position: relative;
-
-  a {
-    color: $black;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 1px;
-    left: 0;
-    width: 100%;
-    height: 0;
-    background-color: $black;
-  }
-
-  &:hover {
-    text-decoration: none;
-
-    &::before {
-      //animation: swipe 700ms linear;
-      content: '';
-      height: 1px;
-      animation: swipe 700ms cubic-bezier(0.694, 0, 0.335, 1);
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  span.underline-link {
-    &::before {
-      content: none;
-    }
-
-    a {
-      text-decoration: underline;
-    }
-  }
 }

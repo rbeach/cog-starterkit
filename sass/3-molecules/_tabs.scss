@@ -11,9 +11,9 @@
   margin: 1.5em 0;
 
   ul {
+    border-bottom: 1px solid $light-gray;
     display: block;
     padding-left: 0;
-    border-bottom: 1px solid $light-gray;
 
     li {
       display: inline-block;

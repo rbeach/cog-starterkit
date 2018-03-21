@@ -21,20 +21,4 @@
       }
     }
   }
-
-  &.mobile-image-320 {
-    @media all and (max-width: 320px) {
-      img:first-child {
-        display: none;
-      }
-
-      img:nth-child(2) {
-        display: none;
-      }
-
-      img:nth-child(3) {
-        display: block;
-      }
-    }
-  }
 }

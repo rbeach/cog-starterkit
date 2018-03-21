@@ -16,10 +16,10 @@ $heading: $dark-gray;
 $link: $med-gray;
 
 // Fonts ///////////////
-$opensans: 'Open Sans';
+$open-sans: 'Open Sans';
 $poppins: 'Poppins';
-$heading_font: $opensans;
-$body_font: $poppins;
+$heading-font: $open-sans;
+$body-font: $poppins;
 
 // Susy config ///////////////
 $susy: (
@@ -58,13 +58,13 @@ body {
   border-top: 1px dotted $color;
 
   @if $direction == top {
-    padding-top: 25px;
     margin-top: 25px;
+    padding-top: 25px;
   }
 
   @else {
-    padding-bottom: 25px;
     margin-bottom: 25px;
+    padding-bottom: 25px;
   }
 }
 
@@ -75,8 +75,8 @@ body {
 // Example Placeholders ///////////////
 .no-ul-list {
   list-style-type: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
 
   > li {
     list-style-type: none;
@@ -92,10 +92,10 @@ body {
 }
 
 .blocked-style {
-  border: 1px solid $white;
-  padding: 12px;
-  border-radius: 5px;
-  background: $off-white;
-
   @extend .tmp-shadow;
+
+  background: $off-white;
+  border: 1px solid $white;
+  border-radius: 5px;
+  padding: 12px;
 }

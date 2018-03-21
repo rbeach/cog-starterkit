@@ -66,9 +66,11 @@
       "selector-max-compound-selectors": null,
       "selector-max-id": null,
       "selector-no-qualifying-type": null,
+      "selector-no-vendor-prefix": null,
       "scss/selector-no-redundant-nesting-selector": null,
       "scss/at-extend-no-missing-placeholder": null,
-      "string-quotes": null
+      "string-quotes": null,
+      "value-no-vendor-prefix": null
     }
   },
   "private": true,
