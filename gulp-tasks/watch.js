@@ -7,7 +7,6 @@
 
 module.exports = function (gulp, plugins, options) {
   'use strict';
-  var path = require('path');
 
   gulp.task('watch', ['watch:sass', 'watch:styleguide', 'watch:js']);
 
@@ -18,7 +17,6 @@ module.exports = function (gulp, plugins, options) {
       plugins.runSequence(
         'lint:js',
         'lint:css',
-        'compile:js',
         'browser-sync:reload'
       );
     });
@@ -38,8 +36,7 @@ module.exports = function (gulp, plugins, options) {
 
   gulp.task('watch:styleguide', function () {
     return gulp.watch([
-      options.sass.files,
-      path.join(options.styleGuide.builder, "/pages/**/*.*")
+      options.sass.files
     ], function () {
       plugins.runSequence(
         'compile:styleguide'

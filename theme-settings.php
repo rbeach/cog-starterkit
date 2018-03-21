@@ -10,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Implements hook_form_system_theme_settings_alter().
  */
-function swhr_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state, $form_id = NULL) {
+function STARTERKIT_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state, $form_id = NULL) {
   // Work-around for a core bug affecting admin themes. See issue #943212.
   if (isset($form_id)) {
     return;
@@ -18,10 +18,10 @@ function swhr_form_system_theme_settings_alter(&$form, FormStateInterface &$form
 
   // Create the form using Forms API: http://api.drupal.org/api/7
   /* -- Delete this line if you want to use this setting
-  $form['swhr_example'] = [
+  $form['STARTERKIT_example'] = [
   '#type'          => 'checkbox',
-  '#title'         => t('swhr sample setting'),
-  '#default_value' => theme_get_setting('swhr_example'),
+  '#title'         => t('STARTERKIT sample setting'),
+  '#default_value' => theme_get_setting('STARTERKIT_example'),
   '#description'   => t("This example option doesn't do anything."),
   ];
   // */

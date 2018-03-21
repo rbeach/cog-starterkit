@@ -8,16 +8,11 @@
 module.exports = function (gulp, plugins, options) {
   'use strict';
 
-  var reportError = function (error) {
-      console.log(error.toString());
-      this.emit('end');
-  }
-
   gulp.task('compile:sass', function () {
     return gulp.src([
       options.sass.files
     ])
-      .pipe(plugins.plumber({errorHandler: reportError}))
+      .pipe(plugins.plumber())
       .pipe(plugins.sourcemaps.init())
       .pipe(plugins.sassGlob())
       .pipe(plugins.sass({
